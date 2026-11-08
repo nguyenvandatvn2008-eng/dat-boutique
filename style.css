@@ -1,0 +1,154 @@
+/* CAI DAT CHUNG */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f3ed;
+    color: #3d3028;
+}
+
+/* DAU TRANG */
+header {
+    background-color: #3d3028;
+    color: white;
+    padding: 22px 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+header h1 {
+    color: #e5bd83;
+    font-size: 28px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #e5bd83;
+}
+
+/* BANNER */
+.banner {
+    background: linear-gradient(135deg, #80634c, #c49a6c);
+    color: white;
+    text-align: center;
+    padding: 75px 20px;
+}
+
+.banner h2 {
+    font-size: 34px;
+    margin-bottom: 15px;
+}
+
+.banner p {
+    font-size: 18px;
+}
+
+/* SAN PHAM */
+main {
+    padding: 45px 20px;
+    text-align: center;
+}
+
+main h2 {
+    margin-bottom: 30px;
+    color: #5b4030;
+}
+
+.danh-sach {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.san-pham {
+    background-color: white;
+    width: 250px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(61, 48, 40, 0.15);
+    transition: transform 0.3s;
+}
+
+.san-pham:hover {
+    transform: translateY(-7px);
+}
+
+.san-pham img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.san-pham h3 {
+    margin-bottom: 12px;
+    color: #3d3028;
+}
+
+.san-pham p {
+    color: #b36b32;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 18px;
+}
+
+/* NUT BAM */
+button {
+    background-color: #9b6945;
+    color: white;
+    border: none;
+    padding: 11px 16px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #6f472e;
+}
+
+/* GIO HANG */
+#giohang {
+    background-color: white;
+    margin: 25px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(61, 48, 40, 0.1);
+}
+
+#giohang h2 {
+    color: #5b4030;
+    margin-bottom: 20px;
+}
+
+#giohang h3 {
+    margin-top: 20px;
+    color: #b36b32;
+}
+
+/* CHAN TRANG */
+footer {
+    background-color: #3d3028;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 30px;
+    line-height: 1.8;
+}

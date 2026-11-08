@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAT BOUTIQUE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- PHAN DAU TRANG -->
+    <header>
+        <h1>DAT BOUTIQUE</h1>
+
+        <nav>
+            <a href="#">Trang chủ</a>
+            <a href="#sanpham">Sản phẩm</a>
+            <a href="#giohang">Giỏ hàng</a>
+            <a href="#lienhe">Liên hệ</a>
+        </nav>
+
+        <div>
+            🛒 Giỏ hàng: <span id="soluong">0</span>
+        </div>
+    </header>
+
+    <!-- BANNER -->
+    <section class="banner">
+        <h2>Chào mừng đến với DAT BOUTIQUE</h2>
+        <p>Thời trang đẹp - Giá cả hợp lý</p>
+    </section>
+
+    <!-- DANH SACH SAN PHAM -->
+    <main id="sanpham">
+        <h2>SẢN PHẨM CỦA CHÚNG TÔI</h2>
+
+        <div class="danh-sach">
+
+            <!-- SAN PHAM 1 -->
+            <div class="san-pham">
+                <img src="https://placehold.co/300x250?text=Ao+thun"
+                alt="Áo thun nam">
+                <h3>Áo thun nam</h3>
+                <p>120.000đ</p>
+
+                <button onclick="themGioHang('Áo thun nam', 120000)">
+                    Thêm vào giỏ
+                </button>
+            </div>
+
+            <!-- SAN PHAM 2 -->
+            <div class="san-pham">
+                <img src="https://placehold.co/300x250?text=Quan+jean"
+                     alt="Quần jean">
+
+                <h3>Quần jean</h3>
+                <p>250.000đ</p>
+
+                <button onclick="themGioHang('Quần jean', 250000)">
+                    Thêm vào giỏ
+                </button>
+            </div>
+
+            <!-- SAN PHAM 3 -->
+            <div class="san-pham">
+                <img src="https://placehold.co/300x250?text=Ao+khoac"
+                     alt="Áo khoác">
+
+                <h3>Áo khoác</h3>
+                <p>350.000đ</p>
+
+                <button onclick="themGioHang('Áo khoác', 350000)">
+                    Thêm vào giỏ
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- GIO HANG -->
+    <section id="giohang">
+        <h2>GIỎ HÀNG CỦA BẠN</h2>
+
+        <div id="danhSachGio">
+            Chưa có sản phẩm nào.
+        </div>
+
+        <h3>
+            Tổng tiền: <span id="tongTien">0đ</span>
+        </h3>
+    </section>
+
+    <!-- CHAN TRANG -->
+    <footer id="lienhe">
+        <p>DAT BOUTIQUE - Cửa hàng thời trang</p>
+        <p>Hotline: 0366 258 527</p>
+    </footer>
+
+    <!-- KET NOI JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+</html>
