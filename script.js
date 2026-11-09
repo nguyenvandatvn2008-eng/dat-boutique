@@ -90,26 +90,43 @@ function datHang() {
         return;
     }
 
+    let tongTien = document.getElementById("tongTien").innerText;
+
+    let danhSachSanPham = gioHang.map(sp =>
+        `<li>${sp.ten} - ${sp.gia.toLocaleString("vi-VN")}đ</li>`
+    ).join("");
+
     ketQua.style.display = "block";
 
-    if (phuongThuc.value === "QR") {
-        ketQua.innerHTML = `
-            <h3>THANH TOÁN VIETCOMBANK</h3>
-            <p>Vui lòng quét mã QR bên dưới:</p>
+    ketQua.innerHTML = `
+        <div style="text-align:center; padding:20px;">
+            <h2 style="color:green;">✓ ĐẶT HÀNG THÀNH CÔNG!</h2>
 
-            <img src="./qr.jpg"
-                 alt="Mã QR Vietcombank"
-                 style="display:block; width:280px; max-width:100%; height:auto; margin:15px auto;">
+            <p>Cảm ơn ${hoTen} đã mua hàng tại DAT BOUTIQUE!</p>
 
-            <p>Số tiền cần thanh toán:
-                <strong>${document.getElementById("tongTien").innerText}</strong>
+            <hr>
+
+            <h3>THÔNG TIN ĐƠN HÀNG</h3>
+
+            <p>Họ tên: ${hoTen}</p>
+            <p>Số điện thoại: ${soDienThoai}</p>
+            <p>Địa chỉ: ${diaChi}</p>
+
+            <h4>Sản phẩm đã đặt:</h4>
+            <ul style="text-align:left;">
+                ${danhSachSanPham}
+            </ul>
+
+            <h3>Tổng tiền: ${tongTien}</h3>
+
+            <p>Phương thức thanh toán:
+                ${phuongThuc.value === "QR" ? "Vietcombank QR" : "COD"}
             </p>
-        `;
-    } else {
-        ketQua.innerHTML = `
-            <h3>ĐẶT HÀNG THÀNH CÔNG</h3>
-            <p>Bạn đã chọn thanh toán khi nhận hàng (COD).</p>
-            <p>Chúng tôi sẽ liên hệ xác nhận đơn hàng.</p>
-        `;
-    }
+
+            <p>DAT BOUTIQUE sẽ sớm liên hệ xác nhận đơn hàng!</p>
+        </div>
+    `;
+
+    gioHang = [];
+    hienThiGioHang();
 }
