@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="google-site-verification" content="bkWA99c0LOGreSPESmDMOdECw7RZVoU8tw9FvGW17Vw" />
+    <meta name="google-site-verification" content="bkWA99c0LOGreSPESmDMOdECw7RZVoU8tw9FvGW17Vw">
 
     <title>DAT BOUTIQUE</title>
+
     <meta name="description" content="DAT BOUTIQUE - Cửa hàng thời trang, chuyên cung cấp áo thun, áo khoác và trang phục phong cách.">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-
-<body>
 <body>
 
     <!-- PHAN DAU TRANG -->
@@ -49,7 +49,9 @@
                 <img src="aothun.jpg" alt="Áo thun nam">
                 <h3>Áo thun nam</h3>
                 <p>120.000đ</p>
-                <button onclick="themGioHang('Áo thun nam', 120000)">
+
+                <button type="button"
+                    onclick="themGioHang('Áo thun nam', 120000)">
                     Thêm vào giỏ
                 </button>
             </div>
@@ -60,7 +62,8 @@
                 <h3>Quần jean</h3>
                 <p>250.000đ</p>
 
-                <button onclick="themGioHang('Quần jean', 250000)">
+                <button type="button"
+                    onclick="themGioHang('Quần jean', 250000)">
                     Thêm vào giỏ
                 </button>
             </div>
@@ -71,7 +74,8 @@
                 <h3>Áo khoác</h3>
                 <p>350.000đ</p>
 
-                <button onclick="themGioHang('Áo khoác', 350000)">
+                <button type="button"
+                    onclick="themGioHang('Áo khoác', 350000)">
                     Thêm vào giỏ
                 </button>
             </div>
@@ -81,6 +85,7 @@
 
     <!-- GIO HANG -->
     <section id="giohang">
+
         <h2>GIỎ HÀNG CỦA BẠN</h2>
 
         <div id="danhSachGio">
@@ -89,35 +94,42 @@
 
         <h3>
             Tổng tiền: <span id="tongTien">0đ</span>
-            <div class="thanh-toan">
-    <h2>THÔNG TIN ĐẶT HÀNG</h2>
-
-    <input type="text" id="hoTen"
-        placeholder="Họ và tên người nhận">
-
-    <input type="tel" id="soDienThoai"
-        placeholder="Số điện thoại">
-
-    <textarea id="diaChi"
-        placeholder="Địa chỉ nhận hàng"></textarea>
-
-    <h3>Chọn phương thức thanh toán</h3>
-
-    <label>
-        <input type="radio" name="thanhToan" value="QR">
-        Thanh toán bằng QR ngân hàng
-    </label>
-
-    <label>
-        <input type="radio" name="thanhToan" value="COD">
-        Thanh toán khi nhận hàng (COD)
-    </label>
-
-    <button onclick="datHang()">XÁC NHẬN ĐẶT HÀNG</button>
-
-    <div id="ketQuaThanhToan"></div>
-</div>
         </h3>
+
+        <!-- THANH TOAN -->
+        <div class="thanh-toan">
+
+            <h2>THÔNG TIN ĐẶT HÀNG</h2>
+
+            <input type="text" id="hoTen"
+                placeholder="Họ và tên người nhận">
+
+            <input type="tel" id="soDienThoai"
+                placeholder="Số điện thoại">
+
+            <textarea id="diaChi"
+                placeholder="Địa chỉ nhận hàng"></textarea>
+
+            <h3>Chọn phương thức thanh toán</h3>
+
+            <label>
+                <input type="radio" name="thanhToan" value="QR">
+                Thanh toán bằng QR ngân hàng
+            </label>
+
+            <label>
+                <input type="radio" name="thanhToan" value="COD">
+                Thanh toán khi nhận hàng (COD)
+            </label>
+
+            <button type="button" onclick="datHang()">
+                XÁC NHẬN ĐẶT HÀNG
+            </button>
+
+            <div id="ketQuaThanhToan"></div>
+
+        </div>
+
     </section>
 
     <!-- CHAN TRANG -->
@@ -127,7 +139,7 @@
     </footer>
 
     <!-- KET NOI JAVASCRIPT -->
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 
 </body>
 </html>
