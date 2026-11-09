@@ -84,12 +84,13 @@ function datHang() {
     if (phuongThuc.value === "QR") {
         ketQua.innerHTML = `
             <h3>THANH TOÁN VIETCOMBANK</h3>
-            <p>Vui lòng quét mã QR để chuyển khoản.</p>
-            <img src="images/qr-vcb.jpg"
-                 alt="Mã QR Vietcombank"
-                 style="width:220px; max-width:100%;">
-            <p>Số tiền: <strong>${document.getElementById("tongTien").innerText}</strong></p>
-            <p>Sau khi chuyển khoản, vui lòng chờ xác nhận đơn hàng.</p>
+        <p>Vui lòng quét mã QR bên dưới:</p>
+        <img src="./images/qr.jpg"
+             alt="Mã QR Vietcombank"
+             style="display:block; width:280px; max-width:100%; height:auto; margin:15px auto;">
+        <p>Số tiền cần thanh toán:
+            <strong>${document.getElementById("tongTien").innerText}</strong>
+        </p>
         `;
     } else {
         ketQua.innerHTML = `
