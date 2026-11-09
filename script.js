@@ -9,7 +9,6 @@ function themGioHang(ten, gia) {
 
     hienThiGioHang();
 
-    alert("Đã thêm " + ten + " vào giỏ hàng!");
 }
 
 // HIEN THI GIO HANG
