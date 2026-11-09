@@ -46,7 +46,7 @@
 
             <!-- SAN PHAM 1 -->
             <div class="san-pham">
-                <img src="aothun.jpg" alt="Áo thun">
+                <img src="aothun.jpg" alt="Áo thun nam">
                 <h3>Áo thun nam</h3>
                 <p>120.000đ</p>
                 <button onclick="themGioHang('Áo thun nam', 120000)">
@@ -89,6 +89,34 @@
 
         <h3>
             Tổng tiền: <span id="tongTien">0đ</span>
+            <div class="thanh-toan">
+    <h2>THÔNG TIN ĐẶT HÀNG</h2>
+
+    <input type="text" id="hoTen"
+        placeholder="Họ và tên người nhận">
+
+    <input type="tel" id="soDienThoai"
+        placeholder="Số điện thoại">
+
+    <textarea id="diaChi"
+        placeholder="Địa chỉ nhận hàng"></textarea>
+
+    <h3>Chọn phương thức thanh toán</h3>
+
+    <label>
+        <input type="radio" name="thanhToan" value="QR">
+        Thanh toán bằng QR ngân hàng
+    </label>
+
+    <label>
+        <input type="radio" name="thanhToan" value="COD">
+        Thanh toán khi nhận hàng (COD)
+    </label>
+
+    <button onclick="datHang()">XÁC NHẬN ĐẶT HÀNG</button>
+
+    <div id="ketQuaThanhToan"></div>
+</div>
         </h3>
     </section>
 
