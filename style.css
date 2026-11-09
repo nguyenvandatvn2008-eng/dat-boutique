@@ -152,3 +152,36 @@ footer {
     margin-top: 30px;
     line-height: 1.8;
 }
+/* LAM GON GIO HANG */
+.san-pham-gio {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    gap: 15px;
+}
+
+.thong-tin-sp {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.thong-tin-sp span {
+    color: #a66b3f;
+    font-weight: bold;
+}
+
+.nut-xoa {
+    background-color: #a66b3f;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.nut-xoa:hover {
+    background-color: #75472e;
+}
