@@ -85,7 +85,7 @@ function datHang() {
         ketQua.innerHTML = `
             <h3>THANH TOÁN VIETCOMBANK</h3>
         <p>Vui lòng quét mã QR bên dưới:</p>
-        <img src="./images/qr.jpg"
+        <img src="./qr.jpg"
              alt="Mã QR Vietcombank"
              style="display:block; width:280px; max-width:100%; height:auto; margin:15px auto;">
         <p>Số tiền cần thanh toán:
