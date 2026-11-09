@@ -4,7 +4,7 @@ let gioHang = [];
 function themGioHang(ten, gia) {
     gioHang.push({
         ten: ten,
-        gia: gia
+        gia: Number(gia)
     });
 
     hienThiGioHang();
@@ -27,7 +27,7 @@ function hienThiGioHang() {
     let tong = 0;
 
     gioHang.forEach(function(sp, index) {
-        tong += Number(sp.gia);
+        tong += sp.gia;
 
         danhSach.innerHTML += `
             <div class="san-pham-gio">
@@ -47,56 +47,18 @@ function hienThiGioHang() {
     soLuong.innerText = gioHang.length;
     tongTien.innerText = tong.toLocaleString("vi-VN") + "đ";
 
+    // NEU GIO HANG TRONG
     if (gioHang.length === 0) {
         danhSach.innerText = "Chưa có sản phẩm nào.";
         ketQua.innerHTML = "";
         ketQua.style.display = "none";
     }
 }
-    // XOA QR CU KHI GIO HANG THAY DOI
-    ketQua.innerHTML = "";
-
-    danhSach.innerHTML = "";
-
-    let tong = 0;
-
-    gioHang.forEach(function(sp, index) {
-        tong = tong + sp.gia;
-
-        danhSach.innerHTML += `
-            <div class="san-pham-gio">
-                <div class="thong-tin-sp">
-                    <strong>${sp.ten}</strong>
-                    <span>${sp.gia.toLocaleString("vi-VN")}đ</span>
-                </div>
-
-                <button class="nut-xoa"
-                    onclick="xoaSanPham(${index})">
-                    Xóa
-                </button>
-            </div>
-        `;
-    });
-
-    soLuong.innerText = gioHang.length;
-    tongTien.innerText = tong.toLocaleString("vi-VN") + "đ";
-
-    if (gioHang.length === 0) {
-        danhSach.innerText = "Chưa có sản phẩm nào.";
-        ketQua.innerHTML = "";
-    }
-}
 
 // XOA SAN PHAM
 function xoaSanPham(index) {
     gioHang.splice(index, 1);
-
     hienThiGioHang();
-
-    // NEU GIO HANG TRONG THI AN QR
-    if (gioHang.length === 0) {
-        document.getElementById("ketQuaThanhToan").innerHTML = "";
-    }
 }
 
 // DAT HANG
@@ -109,11 +71,12 @@ function datHang() {
         'input[name="thanhToan"]:checked'
     );
 
-    let ketQua = document.getElementById("ketQuaThanhToan");ketQua.style.display = "block";
+    let ketQua = document.getElementById("ketQuaThanhToan");
 
     if (gioHang.length === 0) {
         alert("Giỏ hàng đang trống!");
         ketQua.innerHTML = "";
+        ketQua.style.display = "none";
         return;
     }
 
@@ -126,6 +89,8 @@ function datHang() {
         alert("Vui lòng chọn phương thức thanh toán!");
         return;
     }
+
+    ketQua.style.display = "block";
 
     if (phuongThuc.value === "QR") {
         ketQua.innerHTML = `
