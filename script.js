@@ -7,11 +7,12 @@ function themGioHang(ten, gia) {
         gia: gia
     });
 
-    hienThiGioHang();document.getElementById("gioHang").scrollIntoView({
-    behavior: "smooth",
-    block: "center"
-});
+    hienThiGioHang();
 
+    document.getElementById("gioHang").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
 }
 
 // HIEN THI GIO HANG
@@ -19,6 +20,10 @@ function hienThiGioHang() {
     let danhSach = document.getElementById("danhSachGio");
     let soLuong = document.getElementById("soluong");
     let tongTien = document.getElementById("tongTien");
+    let ketQua = document.getElementById("ketQuaThanhToan");
+
+    // XOA QR CU KHI GIO HANG THAY DOI
+    ketQua.innerHTML = "";
 
     danhSach.innerHTML = "";
 
@@ -47,14 +52,23 @@ function hienThiGioHang() {
 
     if (gioHang.length === 0) {
         danhSach.innerText = "Chưa có sản phẩm nào.";
+        ketQua.innerHTML = "";
     }
 }
 
 // XOA SAN PHAM
 function xoaSanPham(index) {
     gioHang.splice(index, 1);
+
     hienThiGioHang();
+
+    // NEU GIO HANG TRONG THI AN QR
+    if (gioHang.length === 0) {
+        document.getElementById("ketQuaThanhToan").innerHTML = "";
+    }
 }
+
+// DAT HANG
 function datHang() {
     let hoTen = document.getElementById("hoTen").value.trim();
     let soDienThoai = document.getElementById("soDienThoai").value.trim();
@@ -68,6 +82,7 @@ function datHang() {
 
     if (gioHang.length === 0) {
         alert("Giỏ hàng đang trống!");
+        ketQua.innerHTML = "";
         return;
     }
 
@@ -84,13 +99,15 @@ function datHang() {
     if (phuongThuc.value === "QR") {
         ketQua.innerHTML = `
             <h3>THANH TOÁN VIETCOMBANK</h3>
-        <p>Vui lòng quét mã QR bên dưới:</p>
-        <img src="./qr.jpg"
-             alt="Mã QR Vietcombank"
-             style="display:block; width:280px; max-width:100%; height:auto; margin:15px auto;">
-        <p>Số tiền cần thanh toán:
-            <strong>${document.getElementById("tongTien").innerText}</strong>
-        </p>
+            <p>Vui lòng quét mã QR bên dưới:</p>
+
+            <img src="./qr.jpg"
+                 alt="Mã QR Vietcombank"
+                 style="display:block; width:280px; max-width:100%; height:auto; margin:15px auto;">
+
+            <p>Số tiền cần thanh toán:
+                <strong>${document.getElementById("tongTien").innerText}</strong>
+            </p>
         `;
     } else {
         ketQua.innerHTML = `
