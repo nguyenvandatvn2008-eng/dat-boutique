@@ -185,3 +185,31 @@ footer {
 .nut-xoa:hover {
     background-color: #75472e;
 }
+.thanh-toan {
+    margin-top: 25px;
+    padding: 20px;
+    background: #fff8f1;
+    border-radius: 12px;
+}
+
+.thanh-toan input[type="text"],
+.thanh-toan input[type="tel"],
+.thanh-toan textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    box-sizing: border-box;
+}
+
+.thanh-toan button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 15px;
+    background: #a66b3f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
