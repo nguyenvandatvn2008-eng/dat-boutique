@@ -9,7 +9,13 @@ function themGioHang(ten, gia) {
 
     hienThiGioHang();
 
-    document.getElementById("gioHang").scrollIntoView({
+    // XOA THONG BAO CU NEU CO
+    let ketQua = document.getElementById("ketQuaThanhToan");
+    ketQua.innerHTML = "";
+    ketQua.style.display = "none";
+
+    // CUON DEN GIO HANG
+    document.getElementById("giohang").scrollIntoView({
         behavior: "smooth",
         block: "center"
     });
@@ -20,7 +26,6 @@ function hienThiGioHang() {
     let danhSach = document.getElementById("danhSachGio");
     let soLuong = document.getElementById("soluong");
     let tongTien = document.getElementById("tongTien");
-    let ketQua = document.getElementById("ketQuaThanhToan");
 
     danhSach.innerHTML = "";
 
@@ -45,20 +50,24 @@ function hienThiGioHang() {
     });
 
     soLuong.innerText = gioHang.length;
-    tongTien.innerText = tong.toLocaleString("vi-VN") + "đ";
 
-    // NEU GIO HANG TRONG
+    tongTien.innerText =
+        tong.toLocaleString("vi-VN") + "đ";
+
     if (gioHang.length === 0) {
         danhSach.innerText = "Chưa có sản phẩm nào.";
-        ketQua.innerHTML = "";
-        ketQua.style.display = "none";
     }
 }
 
 // XOA SAN PHAM
 function xoaSanPham(index) {
     gioHang.splice(index, 1);
+
     hienThiGioHang();
+
+    let ketQua = document.getElementById("ketQuaThanhToan");
+    ketQua.innerHTML = "";
+    ketQua.style.display = "none";
 }
 
 // DAT HANG
@@ -73,13 +82,13 @@ function datHang() {
 
     let ketQua = document.getElementById("ketQuaThanhToan");
 
+    // KIEM TRA GIO HANG
     if (gioHang.length === 0) {
         alert("Giỏ hàng đang trống!");
-        ketQua.innerHTML = "";
-        ketQua.style.display = "none";
         return;
     }
 
+    // KIEM TRA THONG TIN
     if (!hoTen || !soDienThoai || !diaChi) {
         alert("Vui lòng nhập đầy đủ thông tin!");
         return;
@@ -90,43 +99,90 @@ function datHang() {
         return;
     }
 
-    let tongTien = document.getElementById("tongTien").innerText;
+    // TINH TONG TIEN
+    let tong = gioHang.reduce(function(sum, sp) {
+        return sum + sp.gia;
+    }, 0);
 
+    let tongTien = tong.toLocaleString("vi-VN") + "đ";
+
+    // DANH SACH SAN PHAM
     let danhSachSanPham = gioHang.map(sp =>
         `<li>${sp.ten} - ${sp.gia.toLocaleString("vi-VN")}đ</li>`
     ).join("");
 
+    // PHUONG THUC THANH TOAN
+    let thongTinThanhToan = "";
+
+    if (phuongThuc.value === "QR") {
+        thongTinThanhToan = `
+            <p><strong>Phương thức thanh toán:</strong></p>
+            <h3 style="color:#2563eb;">Vietcombank QR</h3>
+
+            <p>Vui lòng quét mã QR để thanh toán:</p>
+
+            <img src="./qr.jpg"
+                 alt="Mã QR Vietcombank"
+                 style="display:block; width:220px; max-width:100%; height:auto; margin:15px auto;">
+        `;
+    } else {
+        thongTinThanhToan = `
+            <p><strong>Phương thức thanh toán:</strong></p>
+            <h3 style="color:#2563eb;">
+                Thanh toán khi nhận hàng (COD)
+            </h3>
+        `;
+    }
+
+    // HIEN THI THONG BAO
     ketQua.style.display = "block";
 
     ketQua.innerHTML = `
         <div style="text-align:center; padding:20px;">
-            <h2 style="color:green;">✓ ĐẶT HÀNG THÀNH CÔNG!</h2>
 
-            <p>Cảm ơn ${hoTen} đã mua hàng tại DAT BOUTIQUE!</p>
+            <h2 style="color:green;">
+                ✓ ĐẶT HÀNG THÀNH CÔNG!
+            </h2>
+
+            <p>
+                Cảm ơn ${hoTen} đã mua hàng tại DAT BOUTIQUE!
+            </p>
 
             <hr>
 
             <h3>THÔNG TIN ĐƠN HÀNG</h3>
 
             <p>Họ tên: ${hoTen}</p>
+
             <p>Số điện thoại: ${soDienThoai}</p>
+
             <p>Địa chỉ: ${diaChi}</p>
 
             <h4>Sản phẩm đã đặt:</h4>
+
             <ul style="text-align:left;">
                 ${danhSachSanPham}
             </ul>
 
             <h3>Tổng tiền: ${tongTien}</h3>
 
-            <p>Phương thức thanh toán:
-                ${phuongThuc.value === "QR" ? "Vietcombank QR" : "COD"}
+            ${thongTinThanhToan}
+
+            <p>
+                DAT BOUTIQUE sẽ sớm liên hệ xác nhận đơn hàng!
             </p>
 
-            <p>DAT BOUTIQUE sẽ sớm liên hệ xác nhận đơn hàng!</p>
         </div>
     `;
 
+    // XOA GIO HANG SAU KHI DAT HANG
     gioHang = [];
+
     hienThiGioHang();
+
+    // CUON DEN THONG BAO
+    ketQua.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
 }
