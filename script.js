@@ -27,7 +27,7 @@ function hienThiGioHang() {
     let tong = 0;
 
     gioHang.forEach(function(sp, index) {
-        tong += sp.gia;
+        tong += Number(sp.gia);
 
         danhSach.innerHTML += `
             <div class="san-pham-gio">
@@ -51,8 +51,6 @@ function hienThiGioHang() {
         danhSach.innerText = "Chưa có sản phẩm nào.";
         ketQua.innerHTML = "";
         ketQua.style.display = "none";
-    } else {
-        ketQua.style.display = "block";
     }
 }
     // XOA QR CU KHI GIO HANG THAY DOI
