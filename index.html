@@ -112,15 +112,21 @@
 
             <h3>Chọn phương thức thanh toán</h3>
 
-            <label>
-                <input type="radio" name="thanhToan" value="QR">
-                Thanh toán bằng QR ngân hàng
-            </label>
+            <!-- THANH TOAN QR -->
+            <div style="display:block; margin-bottom:10px;">
+                <label style="display:block;">
+                    <input type="radio" name="thanhToan" value="QR">
+                    Thanh toán bằng QR ngân hàng
+                </label>
+            </div>
 
-            <label>
-                <input type="radio" name="thanhToan" value="COD">
-                Thanh toán khi nhận hàng (COD)
-            </label>
+            <!-- THANH TOAN COD -->
+            <div style="display:block; margin-bottom:15px;">
+                <label style="display:block;">
+                    <input type="radio" name="thanhToan" value="COD">
+                    Thanh toán khi nhận hàng (COD)
+                </label>
+            </div>
 
             <button type="button" onclick="datHang()">
                 XÁC NHẬN ĐẶT HÀNG
