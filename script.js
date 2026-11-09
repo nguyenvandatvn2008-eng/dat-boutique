@@ -25,10 +25,17 @@ function hienThiGioHang() {
         tong = tong + sp.gia;
 
         danhSach.innerHTML += `
-            <p>
-                ${sp.ten} - ${sp.gia.toLocaleString("vi-VN")}đ
-                <button onclick="xoaSanPham(${index})">Xóa</button>
-            </p>
+            <div class="san-pham-gio">
+                <div class="thong-tin-sp">
+                    <strong>${sp.ten}</strong>
+                    <span>${sp.gia.toLocaleString("vi-VN")}đ</span>
+                </div>
+
+                <button class="nut-xoa"
+                    onclick="xoaSanPham(${index})">
+                    Xóa
+                </button>
+            </div>
         `;
     });
 
