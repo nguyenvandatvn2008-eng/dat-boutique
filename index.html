@@ -1,101 +1,133 @@
-let gioHang = [];
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-// THEM SAN PHAM VAO GIO HANG
-function themGioHang(ten, gia) {
-    gioHang.push({
-        ten: ten,
-        gia: gia
-    });
+    <meta name="google-site-verification" content="bkWA99c0LOGreSPESmDMOdECw7RZVoU8tw9FvGW17Vw" />
 
-    hienThiGioHang();document.getElementById("gioHang").scrollIntoView({
-    behavior: "smooth",
-    block: "center"
-});
+    <title>DAT BOUTIQUE</title>
+    <meta name="description" content="DAT BOUTIQUE - Cửa hàng thời trang, chuyên cung cấp áo thun, áo khoác và trang phục phong cách.">
+    <link rel="stylesheet" href="style.css">
+</head>
 
-}
+<body>
 
-// HIEN THI GIO HANG
-function hienThiGioHang() {
-    let danhSach = document.getElementById("danhSachGio");
-    let soLuong = document.getElementById("soluong");
-    let tongTien = document.getElementById("tongTien");
+<body>
+<body>
 
-    danhSach.innerHTML = "";
+    <!-- PHAN DAU TRANG -->
+    <header>
+        <h1>DAT BOUTIQUE</h1>
 
-    let tong = 0;
+        <nav>
+            <a href="#">Trang chủ</a>
+            <a href="#sanpham">Sản phẩm</a>
+            <a href="#giohang">Giỏ hàng</a>
+            <a href="#lienhe">Liên hệ</a>
+        </nav>
 
-    gioHang.forEach(function(sp, index) {
-        tong = tong + sp.gia;
+        <div>
+            🛒 Giỏ hàng: <span id="soluong">0</span>
+        </div>
+    </header>
 
-        danhSach.innerHTML += `
-            <div class="san-pham-gio">
-                <div class="thong-tin-sp">
-                    <strong>${sp.ten}</strong>
-                    <span>${sp.gia.toLocaleString("vi-VN")}đ</span>
-                </div>
+    <!-- BANNER -->
+    <section class="banner">
+        <h2>Chào mừng đến với DAT BOUTIQUE</h2>
+        <p>Thời trang đẹp - Giá cả hợp lý</p>
+    </section>
 
-                <button class="nut-xoa"
-                    onclick="xoaSanPham(${index})">
-                    Xóa
+    <!-- DANH SACH SAN PHAM -->
+    <main id="sanpham">
+        <h2>SẢN PHẨM CỦA CHÚNG TÔI</h2>
+
+        <div class="danh-sach">
+
+            <!-- SAN PHAM 1 -->
+            <div class="san-pham">
+                <img src="aothun.jpg" alt="Áo thun nam">
+                <h3>Áo thun nam</h3>
+                <p>120.000đ</p>
+                <button onclick="themGioHang('Áo thun nam', 120000)">
+                    Thêm vào giỏ
                 </button>
             </div>
-        `;
-    });
 
-    soLuong.innerText = gioHang.length;
-    tongTien.innerText = tong.toLocaleString("vi-VN") + "đ";
+            <!-- SAN PHAM 2 -->
+            <div class="san-pham">
+                <img src="download.webp" alt="Quần jean">
+                <h3>Quần jean</h3>
+                <p>250.000đ</p>
 
-    if (gioHang.length === 0) {
-        danhSach.innerText = "Chưa có sản phẩm nào.";
-    }
-}
+                <button onclick="themGioHang('Quần jean', 250000)">
+                    Thêm vào giỏ
+                </button>
+            </div>
 
-// XOA SAN PHAM
-function xoaSanPham(index) {
-    gioHang.splice(index, 1);
-    hienThiGioHang();
-}
-function datHang() {
-    let hoTen = document.getElementById("hoTen").value.trim();
-    let soDienThoai = document.getElementById("soDienThoai").value.trim();
-    let diaChi = document.getElementById("diaChi").value.trim();
+            <!-- SAN PHAM 3 -->
+            <div class="san-pham">
+                <img src="images.jpg" alt="Áo khoác">
+                <h3>Áo khoác</h3>
+                <p>350.000đ</p>
 
-    let phuongThuc = document.querySelector(
-        'input[name="thanhToan"]:checked'
-    );
+                <button onclick="themGioHang('Áo khoác', 350000)">
+                    Thêm vào giỏ
+                </button>
+            </div>
 
-    let ketQua = document.getElementById("ketQuaThanhToan");
+        </div>
+    </main>
 
-    if (gioHang.length === 0) {
-        alert("Giỏ hàng đang trống!");
-        return;
-    }
+    <!-- GIO HANG -->
+    <section id="giohang">
+        <h2>GIỎ HÀNG CỦA BẠN</h2>
 
-    if (!hoTen || !soDienThoai || !diaChi) {
-        alert("Vui lòng nhập đầy đủ thông tin!");
-        return;
-    }
+        <div id="danhSachGio">
+            Chưa có sản phẩm nào.
+        </div>
 
-    if (!phuongThuc) {
-        alert("Vui lòng chọn phương thức thanh toán!");
-        return;
-    }
+        <h3>
+            Tổng tiền: <span id="tongTien">0đ</span>
+            <div class="thanh-toan">
+    <h2>THÔNG TIN ĐẶT HÀNG</h2>
 
-    if (phuongThuc.value === "QR") {
-        ketQua.innerHTML = `
-            <h3>THANH TOÁN VIETCOMBANK</h3>
-            <p>Vui lòng quét mã QR để chuyển khoản.</p>
-            <img src="images/qr-vcb.jpg"
-                 alt="Mã QR Vietcombank"
-                 style="width:220px; max-width:100%;">
-            <p>Số tiền: <strong>${document.getElementById("tongTien").innerText}</strong></p>
-            <p>Sau khi chuyển khoản, vui lòng chờ xác nhận đơn hàng.</p>
-        `;
-    } else {
-        ketQua.innerHTML = `
-            <h3>ĐẶT HÀNG THÀNH CÔNG</h3>
-            <p>Bạn đã chọn thanh toán khi nhận hàng (COD).</p>
-            <p>Chúng tôi sẽ liên hệ xác nhận đơn hàng.</p>
-        `;
-    }
-}
+    <input type="text" id="hoTen"
+        placeholder="Họ và tên người nhận">
+
+    <input type="tel" id="soDienThoai"
+        placeholder="Số điện thoại">
+
+    <textarea id="diaChi"
+        placeholder="Địa chỉ nhận hàng"></textarea>
+
+    <h3>Chọn phương thức thanh toán</h3>
+
+    <label>
+        <input type="radio" name="thanhToan" value="QR">
+        Thanh toán bằng QR ngân hàng
+    </label>
+
+    <label>
+        <input type="radio" name="thanhToan" value="COD">
+        Thanh toán khi nhận hàng (COD)
+    </label>
+
+    <button onclick="datHang()">XÁC NHẬN ĐẶT HÀNG</button>
+
+    <div id="ketQuaThanhToan"></div>
+</div>
+        </h3>
+    </section>
+
+    <!-- CHAN TRANG -->
+    <footer id="lienhe">
+        <p>DAT BOUTIQUE - Cửa hàng thời trang</p>
+        <p>Hotline: 0366 258 527</p>
+    </footer>
+
+    <!-- KET NOI JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+</html>
