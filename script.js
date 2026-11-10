@@ -154,7 +154,7 @@ async function datHang() {
 
         await emailjs.send(
             "service_338elep",
-            "fzp0g6i",
+            "template_0xjohd8",
             {
                 ten_khach: hoTen,
                 so_dien_thoai: soDienThoai,
