@@ -4,322 +4,185 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="google-site-verification"
-          content="bkWA99c0LOGreSPESmDMOdECw7RZVoU8tw9FvGW17Vw">
+    <meta name="google-site-verification" content="bkWA99c0LOGreSPESmDMOdECw7RZVoU8tw9FvGW17Vw">
 
-    <title>DAT BOUTIQUE | Fashion Store</title>
-
-    <meta name="description"
-          content="DAT BOUTIQUE - Khám phá phong cách thời trang hiện đại.">
-
+    <title>DAT BOUTIQUE | Thời trang</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- THONG BAO -->
-    <div class="top-bar">
-        CHÀO MỪNG ĐẾN VỚI DAT BOUTIQUE
-        <span> | PHONG CÁCH LÀ CỦA BẠN</span>
-    </div>
-
-    <!-- HEADER -->
-    <header class="header">
-
-        <a href="#" class="logo">
-            DAT <span>BOUTIQUE</span>
-            <small>FASHION STORE</small>
-        </a>
-
-        <nav>
-            <a href="#">Trang chủ</a>
-            <a href="#sanpham">Sản phẩm</a>
-            <a href="#giohang">Giỏ hàng</a>
-            <a href="#lienhe">Liên hệ</a>
-        </nav>
-
-        <a href="#giohang" class="cart-link">
-            🛒 Giỏ hàng
-            <span id="soluong">0</span>
-        </a>
-
+    <header class="dau-trang">
+        <div class="logo">DAT <span>BOUTIQUE</span></div>
+        <p>PHONG CÁCH CỦA RIÊNG BẠN</p>
     </header>
 
-    <!-- BANNER -->
-    <section class="banner">
+    <nav class="thanh-menu">
+        <a href="#trang-chu">Trang chủ</a>
+        <a href="#san-pham">Sản phẩm</a>
+        <a href="#giohang">Giỏ hàng</a>
+        <a href="#dat-hang">Đặt hàng</a>
+    </nav>
 
-        <div class="banner-content">
+    <main id="trang-chu">
 
-            <span class="banner-label">DAT BOUTIQUE COLLECTION</span>
+        <section class="banner">
+            <p class="banner-nho">DAT BOUTIQUE COLLECTION</p>
+            <h1>ĐƠN GIẢN – HIỆN ĐẠI – KHÁC BIỆT</h1>
+            <p>Khám phá phong cách thời trang của bạn.</p>
+            <a href="#san-pham" class="nut-kham-pha">KHÁM PHÁ NGAY</a>
+        </section>
 
-            <h1>
-                DEFINE YOUR<br>
-                <span>OWN STYLE.</span>
-            </h1>
+        <section class="khu-san-pham" id="san-pham">
 
-            <p>
-                Không chỉ là trang phục.<br>
-                Đó là cách bạn thể hiện cá tính.
-            </p>
-
-            <a href="#sanpham" class="banner-button">
-                KHÁM PHÁ NGAY →
-            </a>
-
-        </div>
-
-    </section>
-
-    <!-- THONG TIN -->
-    <section class="benefits">
-
-        <div>
-            <span>✦</span>
-            <h3>Phong cách hiện đại</h3>
-            <p>Thời trang dành cho bạn</p>
-        </div>
-
-        <div>
-            <span>♧</span>
-            <h3>Mua sắm tiện lợi</h3>
-            <p>Đặt hàng trực tuyến</p>
-        </div>
-
-        <div>
-            <span>♡</span>
-            <h3>Hỗ trợ khách hàng</h3>
-            <p>Luôn đồng hành cùng bạn</p>
-        </div>
-
-    </section>
-
-    <!-- SAN PHAM -->
-    <main id="sanpham">
-
-        <div class="section-heading">
-
-            <span>OUR COLLECTION</span>
-
-            <h2>SẢN PHẨM NỔI BẬT</h2>
-
-            <p>Khám phá những lựa chọn thời trang của DAT BOUTIQUE.</p>
-
-        </div>
-
-        <!-- TIM KIEM -->
-        <div class="product-tools">
+            <div class="tieu-de-khu">
+                <p>OUR COLLECTION</p>
+                <h2>SẢN PHẨM NỔI BẬT</h2>
+                <span></span>
+            </div>
 
             <input
                 type="text"
                 id="timKiem"
+                class="tim-kiem"
                 placeholder="Tìm kiếm sản phẩm..."
             >
 
-            <div class="category-buttons">
+            <div class="bo-loc">
+                <button class="loc active" data-category="all">Tất cả</button>
+                <button class="loc" data-category="ao">Áo / Bộ đồ</button>
+                <button class="loc" data-category="quan">Quần</button>
+            </div>
 
-                <button class="loc active" data-category="all">
-                    Tất cả
-                </button>
+            <div class="danh-sach">
 
-                <button class="loc" data-category="ao">
-                    Áo
-                </button>
+                <article class="san-pham" data-category="ao">
 
-                <button class="loc" data-category="quan">
-                    Quần
-                </button>
+                    <div class="khung-anh">
+                        <span class="nhan-moi">NEW</span>
+                        <img
+                            id="anhChinh"
+                            src="dobo1.jpg"
+                            alt="Bộ thể thao 3 sọc"
+                        >
+                    </div>
+
+                    <div class="anh-nho">
+                        <img src="dobo1.jpg" onclick="doiAnh(this)" alt="Ảnh 1">
+                        <img src="dobo2.jpg" onclick="doiAnh(this)" alt="Ảnh 2">
+                        <img src="dobo3.jpg" onclick="doiAnh(this)" alt="Ảnh 3">
+                        <img src="dobo4.jpg" onclick="doiAnh(this)" alt="Ảnh 4">
+                    </div>
+
+                    <div class="thong-tin-san-pham">
+                        <p class="loai-san-pham">BỘ THỂ THAO</p>
+                        <h3>Bộ thể thao 3 sọc</h3>
+                        <p class="gia-san-pham">350.000đ</p>
+
+                        <button
+                            type="button"
+                            onclick="themGioHang('Bộ thể thao 3 sọc', 350000, 'dobo1.jpg')"
+                        >
+                            THÊM VÀO GIỎ
+                        </button>
+                    </div>
+
+                </article>
 
             </div>
 
-        </div>
+            <p id="khongTimThay" class="empty-search" hidden>
+                Không tìm thấy sản phẩm phù hợp.
+            </p>
 
-        <!-- DANH SACH SAN PHAM -->
-        <div class="danh-sach"><!-- SAN PHAM DO BO THE THAO -->
-<div class="san-pham">
+        </section>
 
-    <!-- ANH LON -->
-    <div class="khung-anh">
-        <img id="anhChinh"
-             src="dobo1.jpg"
-             alt="Bộ thể thao 3 sọc">
-    </div>
+        <section class="khu-gio-hang" id="giohang">
 
-    <!-- 4 ANH NHO -->
-    <div class="anh-nho">
+            <div class="tieu-de-khu">
+                <p>YOUR SHOPPING</p>
+                <h2>GIỎ HÀNG</h2>
+                <span></span>
+            </div>
 
-        <img src="dobo1.jpg" onclick="doiAnh(this)" alt="Ảnh 1">
+            <div class="khung-gio-hang">
+                <div id="danhSachGio"></div>
 
-        <img src="dobo2.jpg" onclick="doiAnh(this)" alt="Ảnh 2">
-
-        <img src="dobo3.jpg" onclick="doiAnh(this)" alt="Ảnh 3">
-
-        <img src="dobo4.jpg" onclick="doiAnh(this)" alt="Ảnh 4">
-
-    </div>
-
-    <h3>Bộ thể thao 3 sọc</h3>
-
-    <p>350.000đ</p>
-
-    <button type="button"
-        onclick="themGioHang('Bộ thể thao 3 sọc', 350000)">
-        Thêm vào giỏ
-    </button>
-
-</div>
-
-                
-
-            </article>
-
-            <!-- SAN PHAM 2 -->
-            <article class="san-pham" data-category="quan">
-
-                <div class="product-image">
-
+                <div class="tong-ket">
+                    <p>Số lượng: <strong id="soluong">0</strong></p>
+                    <p>Tổng tiền: <strong id="tongTien">0đ</strong></p>
                 </div>
+            </div>
 
-            </article>
+        </section>
 
-            <!-- SAN PHAM 3 -->
-            <article class="san-pham" data-category="ao">
+        <section class="khu-dat-hang" id="dat-hang">
 
-                <div class="product-image">
+            <div class="tieu-de-khu">
+                <p>ORDER INFORMATION</p>
+                <h2>THÔNG TIN ĐẶT HÀNG</h2>
+                <span></span>
+            </div>
 
-        </div>
+            <div class="khung-dat-hang">
 
-        <p id="khongTimThay" class="empty-search" hidden>
-            Không tìm thấy sản phẩm phù hợp.
-        </p>
+                <label for="hoTen">Họ và tên</label>
+                <input
+                    type="text"
+                    id="hoTen"
+                    placeholder="Nhập họ và tên"
+                >
+
+                <label for="soDienThoai">Số điện thoại</label>
+                <input
+                    type="tel"
+                    id="soDienThoai"
+                    placeholder="Nhập số điện thoại"
+                >
+
+                <label for="diaChi">Địa chỉ nhận hàng</label>
+                <textarea
+                    id="diaChi"
+                    rows="3"
+                    placeholder="Nhập địa chỉ nhận hàng"
+                ></textarea>
+
+                <p class="tieu-de-thanh-toan">PHƯƠNG THỨC THANH TOÁN</p>
+
+                <label class="lua-chon-thanh-toan">
+                    <input type="radio" name="thanhToan" value="QR">
+                    Chuyển khoản Vietcombank QR
+                </label>
+
+                <label class="lua-chon-thanh-toan">
+                    <input type="radio" name="thanhToan" value="COD">
+                    Thanh toán khi nhận hàng (COD)
+                </label>
+
+                <button
+                    type="button"
+                    class="order-button"
+                    onclick="datHang()"
+                >
+                    XÁC NHẬN ĐẶT HÀNG →
+                </button>
+
+                <div id="ketQuaThanhToan"></div>
+
+            </div>
+
+        </section>
 
     </main>
 
-    <!-- GIO HANG -->
-    <section id="giohang" class="cart-section">
-
-        <div class="section-heading">
-
-            <span>YOUR SHOPPING BAG</span>
-
-            <h2>GIỎ HÀNG CỦA BẠN</h2>
-
-            <p>Kiểm tra sản phẩm trước khi đặt hàng.</p>
-
-        </div>
-
-        <div class="cart-container">
-
-            <div id="danhSachGio">
-                Chưa có sản phẩm nào.
-            </div>
-
-            <div class="cart-total">
-
-                <span>TỔNG THANH TOÁN</span>
-
-                <h2 id="tongTien">0đ</h2>
-
-            </div>
-
-        </div>
-
-        <!-- THANH TOAN -->
-        <div class="thanh-toan">
-
-            <div class="section-heading">
-
-                <span>CHECKOUT</span>
-
-                <h2>THÔNG TIN ĐẶT HÀNG</h2>
-
-            </div>
-
-            <div class="checkout-fields">
-
-                <label for="hoTen">Họ và tên người nhận</label>
-
-                <input type="text" id="hoTen"
-                       placeholder="Nhập họ và tên">
-
-                <label for="soDienThoai">Số điện thoại</label>
-
-                <input type="tel" id="soDienThoai"
-                       placeholder="Nhập số điện thoại">
-
-                <label for="diaChi">Địa chỉ nhận hàng</label>
-
-                <textarea id="diaChi"
-                          placeholder="Nhập địa chỉ nhận hàng"></textarea>
-
-            </div>
-
-            <h3 class="payment-title">PHƯƠNG THỨC THANH TOÁN</h3>
-
-            <div class="payment-option">
-
-                <label>
-                    <input type="radio" name="thanhToan" value="QR">
-                    <span>
-                        <strong>Vietcombank QR</strong>
-                        <small>Quét mã QR để thanh toán</small>
-                    </span>
-                </label>
-
-                <label>
-                    <input type="radio" name="thanhToan" value="COD">
-                    <span>
-                        <strong>Thanh toán khi nhận hàng</strong>
-                        <small>COD - Trả tiền khi nhận hàng</small>
-                    </span>
-                </label>
-
-            </div>
-
-            <button type="button" class="order-button"
-                    onclick="datHang()">
-                XÁC NHẬN ĐẶT HÀNG →
-            </button>
-
-            <div id="ketQuaThanhToan"></div>
-
-        </div>
-
-    </section>
-
-    <!-- CHAN TRANG -->
-    <footer id="lienhe">
-
-        <div class="footer-content">
-
-            <div>
-                <h2>DAT BOUTIQUE</h2>
-                <p>DEFINE YOUR OWN STYLE.</p>
-            </div>
-
-            <div>
-                <h3>LIÊN HỆ</h3>
-                <p>Hotline: 0366 258 527</p>
-                <p>Hỗ trợ khách hàng</p>
-            </div>
-
-            <div>
-                <h3>THÔNG TIN</h3>
-                <a href="#sanpham">Sản phẩm</a>
-                <a href="#giohang">Đặt hàng</a>
-            </div>
-
-        </div>
-
-        <div class="copyright">
-            © 2026 DAT BOUTIQUE. ALL RIGHTS RESERVED.
-        </div>
-
+    <footer>
+        <h2>DAT BOUTIQUE</h2>
+        <p>Thời trang dành cho phong cách của bạn.</p>
+        <p>Hotline: 0366 258 527</p>
+        <p>© 2026 DAT BOUTIQUE</p>
     </footer>
 
-    <!-- EMAILJS -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-    <!-- JAVASCRIPT -->
     <script src="./script.js"></script>
 
 </body>
