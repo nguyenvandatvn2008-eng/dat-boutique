@@ -839,3 +839,59 @@ footer {
         padding: 9px 18px;
     }
 }
+/* NANG CAP THE SAN PHAM */
+.san-pham {
+    background: #fffdf9;
+    border: 1px solid #eee5da;
+    border-radius: 14px;
+    padding: 15px;
+    overflow: hidden;
+    transition: all 0.35s ease;
+}
+
+.san-pham:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 28px rgba(61, 48, 40, 0.12);
+    border-color: #cbb9a5;
+}
+
+/* ANH SAN PHAM */
+.san-pham img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.4s ease;
+}
+
+.san-pham:hover img {
+    transform: scale(1.04);
+}
+
+/* TEN SAN PHAM */
+.san-pham h3 {
+    color: #3d3028;
+    font-size: 17px;
+    margin: 15px 0 8px;
+}
+
+/* GIA SAN PHAM */
+.san-pham p {
+    color: #8b6245;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+/* NUT THEM VAO GIO */
+.san-pham button {
+    width: 100%;
+    background: #4a382c;
+    color: white;
+    border-radius: 25px;
+    padding: 12px;
+    margin-top: 12px;
+}
+
+.san-pham button:hover {
+    background: #8b6245;
+}
