@@ -529,3 +529,9 @@ async function datHang() {
 // ==============================
 
 hienThiGioHang();
+// DOI ANH SAN PHAM
+function doiAnh(anh) {
+    let anhChinh = document.getElementById("anhChinh");
+
+    anhChinh.src = anh.src;
+}
