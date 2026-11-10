@@ -22,13 +22,28 @@ function dinhDangTien(gia) {
 function anThongBaoCu() {
     let ketQua = document.getElementById("ketQuaThanhToan");
 
-    ketQua.innerHTML = "";
-    ketQua.style.display = "none";
+    if (ketQua) {
+        ketQua.innerHTML = "";
+        ketQua.style.display = "none";
+    }
 }
 
 
 // ==============================
-// THEM SAN PHAM
+// DOI ANH SAN PHAM
+// ==============================
+
+function doiAnh(anh) {
+    let anhChinh = document.getElementById("anhChinh");
+
+    if (anhChinh && anh) {
+        anhChinh.src = anh.src;
+    }
+}
+
+
+// ==============================
+// THEM SAN PHAM VAO GIO
 // ==============================
 
 function themGioHang(ten, gia, anh = "") {
@@ -53,10 +68,14 @@ function themGioHang(ten, gia, anh = "") {
     hienThiGioHang();
     anThongBaoCu();
 
-    document.getElementById("giohang").scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+    let gio = document.getElementById("giohang");
+
+    if (gio) {
+        gio.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }
 }
 
 
@@ -69,6 +88,8 @@ function hienThiGioHang() {
     let danhSach = document.getElementById("danhSachGio");
     let soLuong = document.getElementById("soluong");
     let tongTien = document.getElementById("tongTien");
+
+    if (!danhSach || !soLuong || !tongTien) return;
 
     danhSach.innerHTML = "";
 
@@ -84,11 +105,8 @@ function hienThiGioHang() {
             <div class="san-pham-gio">
 
                 <div class="thong-tin-sp">
-
                     <strong>${sp.ten}</strong>
-
                     <span>${dinhDangTien(sp.gia)}</span>
-
                 </div>
 
                 <div class="cart-quantity">
@@ -118,7 +136,6 @@ function hienThiGioHang() {
     });
 
     soLuong.innerText = tongSanPham;
-
     tongTien.innerText = dinhDangTien(tong);
 
     if (gioHang.length === 0) {
@@ -158,6 +175,8 @@ function thayDoiSoLuong(index, thayDoi) {
 
 function xoaSanPham(index) {
 
+    if (!gioHang[index]) return;
+
     gioHang.splice(index, 1);
 
     hienThiGioHang();
@@ -172,9 +191,7 @@ function xoaSanPham(index) {
 let oTimKiem = document.getElementById("timKiem");
 
 if (oTimKiem) {
-
     oTimKiem.addEventListener("input", locSanPham);
-
 }
 
 
@@ -195,7 +212,6 @@ danhMuc.forEach(function(nut) {
         nut.classList.add("active");
 
         locSanPham();
-
     });
 
 });
@@ -207,8 +223,11 @@ danhMuc.forEach(function(nut) {
 
 function locSanPham() {
 
-    let tuKhoa = document.getElementById("timKiem")
-        .value.toLowerCase().trim();
+    let oTimKiem = document.getElementById("timKiem");
+
+    let tuKhoa = oTimKiem
+        ? oTimKiem.value.toLowerCase().trim()
+        : "";
 
     let danhMucDangChon = document.querySelector(".loc.active");
 
@@ -216,13 +235,17 @@ function locSanPham() {
         ? danhMucDangChon.dataset.category
         : "all";
 
-    let sanPhams = document.querySelectorAll(".san-pham");
+    let sanPhams = document.querySelectorAll(".danh-sach .san-pham");
 
     let dem = 0;
 
     sanPhams.forEach(function(sp) {
 
-        let ten = sp.querySelector("h3").innerText.toLowerCase();
+        let theTen = sp.querySelector("h3");
+
+        let ten = theTen
+            ? theTen.innerText.toLowerCase()
+            : "";
 
         let dungTuKhoa = ten.includes(tuKhoa);
 
@@ -230,21 +253,19 @@ function locSanPham() {
             loai === "all" || sp.dataset.category === loai;
 
         if (dungTuKhoa && dungDanhMuc) {
-
             sp.style.display = "";
-
             dem++;
-
         } else {
-
             sp.style.display = "none";
-
         }
 
     });
 
-    document.getElementById("khongTimThay").hidden = dem !== 0;
+    let thongBao = document.getElementById("khongTimThay");
 
+    if (thongBao) {
+        thongBao.hidden = dem !== 0;
+    }
 }
 
 
@@ -272,55 +293,49 @@ async function datHang() {
     // KIEM TRA GIO HANG
 
     if (gioHang.length === 0) {
-
         alert("Giỏ hàng đang trống!");
-
         return;
-
     }
 
 
     // KIEM TRA THONG TIN
 
     if (!hoTen || !soDienThoai || !diaChi) {
-
         alert("Vui lòng nhập đầy đủ thông tin!");
-
         return;
-
     }
 
 
     // KIEM TRA SO DIEN THOAI
 
-    if (!/^(0|\+84)[0-9]{9,10}$/.test(
-        soDienThoai.replace(/\s/g, "")
-    )) {
+    let soDienThoaiChuan = soDienThoai.replace(/\s/g, "");
 
+    if (!/^(0\d{9}|\+84\d{9})$/.test(soDienThoaiChuan)) {
         alert("Vui lòng nhập số điện thoại hợp lệ!");
-
         return;
-
     }
 
 
     // KIEM TRA PHUONG THUC
 
     if (!phuongThuc) {
-
         alert("Vui lòng chọn phương thức thanh toán!");
-
         return;
+    }
 
+
+    // KIEM TRA EMAILJS
+
+    if (typeof emailjs === "undefined") {
+        alert("Không tải được EmailJS. Vui lòng tải lại trang!");
+        return;
     }
 
 
     // TINH TONG TIEN
 
     let tong = gioHang.reduce(function(sum, sp) {
-
         return sum + sp.gia * sp.soLuong;
-
     }, 0);
 
     let tongTien = dinhDangTien(tong);
@@ -356,7 +371,6 @@ async function datHang() {
     `;
 
     nutDatHang.disabled = true;
-
     nutDatHang.innerText = "ĐANG XỬ LÝ...";
 
 
@@ -365,11 +379,8 @@ async function datHang() {
     try {
 
         await emailjs.send(
-
             "service_338elep",
-
             "template_0xjohd8",
-
             {
                 ten_khach: hoTen,
                 so_dien_thoai: soDienThoai,
@@ -377,10 +388,7 @@ async function datHang() {
                 san_pham: danhSachSanPham,
                 tong_tien: tongTien,
                 thanh_toan: thanhToan
-            },
-
-            "uxPUUJpYMMZ3dycSn"
-
+            }
         );
 
 
@@ -433,7 +441,7 @@ async function datHang() {
         }).join("");
 
 
-        // HIEN THI THANH CONG
+        // HIEN THI KET QUA
 
         ketQua.innerHTML = `
 
@@ -529,9 +537,3 @@ async function datHang() {
 // ==============================
 
 hienThiGioHang();
-// DOI ANH SAN PHAM
-function doiAnh(anh) {
-    let anhChinh = document.getElementById("anhChinh");
-
-    anhChinh.src = anh.src;
-}
