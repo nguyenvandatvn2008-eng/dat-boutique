@@ -1,7 +1,8 @@
-/* ==============================
-   CAI DAT CHUNG
-============================== */
+/* =========================================
+   DAT BOUTIQUE - LUXURY BLACK & SILVER
+========================================= */
 
+/* 1. CAI DAT CHUNG */
 * {
     margin: 0;
     padding: 0;
@@ -10,133 +11,179 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 70px;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #e9e9e9;
+    font-family: Arial, Helvetica, sans-serif;
     color: #171717;
     line-height: 1.6;
+    background:
+        radial-gradient(ellipse at 15% 10%, #fff 0%, transparent 40%),
+        radial-gradient(ellipse at 85% 45%, #d0d0d0 0%, transparent 42%),
+        linear-gradient(135deg, #f8f8f8, #dedede 45%, #f5f5f5);
+    background-attachment: fixed;
 }
 
-/* ==============================
-   DAU TRANG
-============================== */
-
+/* 2. HEADER VA LOGO */
 .dau-trang {
-    text-align: center;
-    padding: 30px 15px;
+    min-height: 110px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
-    background: linear-gradient(135deg, #050505, #333, #090909);
-    border-bottom: 1px solid #aaa;
+    background: linear-gradient(120deg, #050505, #292929 50%, #080808);
+    border-bottom: 1px solid #777;
+    box-shadow: 0 8px 25px #0004;
 }
 
-.logo {
-    font-size: 35px;
+.logo-khung {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.logo-db {
+    width: 66px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #c9c9c9;
+    border-radius: 50%;
+    color: #fff;
+    font-family: Georgia, serif;
+    font-size: 27px;
+    font-weight: bold;
+    letter-spacing: -4px;
+    padding-right: 4px;
+    text-shadow: 0 0 12px #fff8;
+    box-shadow:
+        0 0 20px #ffffff25,
+        inset 0 0 15px #ffffff18;
+}
+
+.logo-chu h1 {
+    color: white;
+    font-size: 27px;
     font-weight: 900;
-    letter-spacing: 5px;
+    letter-spacing: 4px;
 }
 
-.logo span {
+.logo-chu h1 span {
     color: #c9c9c9;
 }
 
-.dau-trang p {
-    font-size: 11px;
+.logo-chu p {
+    color: #aaa;
+    font-size: 9px;
     letter-spacing: 4px;
-    color: #c5c5c5;
     margin-top: 5px;
 }
 
-/* ==============================
-   MENU
-============================== */
-
+/* 3. MENU */
 .thanh-menu {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     display: flex;
     justify-content: center;
-    gap: 35px;
-    padding: 15px;
-    background: #111;
+    align-items: center;
+    gap: 40px;
+    padding: 16px;
+    background: linear-gradient(90deg, #080808, #242424, #080808);
+    border-bottom: 1px solid #555;
+    box-shadow: 0 5px 20px #0003;
     flex-wrap: wrap;
 }
 
 .thanh-menu a {
+    position: relative;
     color: white;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.thanh-menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 1px;
+    background: #fff;
     transition: 0.3s;
 }
 
 .thanh-menu a:hover {
-    color: #bdbdbd;
+    color: #c9c9c9;
 }
 
-/* ==============================
-   BANNER
-============================== */
-
-.banner {
-    min-height: 390px;
-    padding: 80px 20px;
-    text-align: center;
-    color: white;
-    background:
-        radial-gradient(ellipse at center, #555 0%, #252525 45%, #080808 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.thanh-menu a:hover::after {
+    width: 100%;
 }
 
-.banner-nho {
-    letter-spacing: 5px;
-    font-size: 12px;
-    color: #ccc;
+/* 4. BANNER ADIDAS */
+.banner,
+.banner.banner-moi {
+    position: relative;
+    width: 100%;
+    min-height: 0;
+    height: clamp(280px, 48vw, 650px);
+    padding: 0;
+    overflow: hidden;
+    display: block;
+    background-color: #080808;
+    background-image: url("banner-adidas.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow:
+        inset 0 -35px 55px #0005,
+        0 15px 35px #0003;
 }
 
-.banner h1 {
-    font-size: 34px;
-    margin: 15px 0;
-    letter-spacing: 2px;
+.banner-link {
+    position: absolute;
+    inset: 0;
+    display: block;
+    z-index: 2;
 }
 
-.banner p {
-    color: #ddd;
-}
-
-.nut-kham-pha {
-    display: inline-block;
-    margin-top: 25px;
-    padding: 12px 28px;
-    color: #111;
-    background: linear-gradient(135deg, white, #aaa);
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    border-radius: 3px;
-    transition: 0.3s;
-}
-
-.nut-kham-pha:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px #0008;
-}
-
-/* ==============================
-   KHU VUC SAN PHAM
-============================== */
-
+/* 5. CAC KHU VUC */
 .khu-san-pham,
 .khu-gio-hang,
 .khu-dat-hang {
-    padding: 65px 20px;
+    position: relative;
+    padding: 75px 5%;
 }
 
+.khu-san-pham {
+    background:
+        radial-gradient(ellipse at 50% 0%, #fff 0%, transparent 55%),
+        linear-gradient(180deg, #eee, #d7d7d7 50%, #f7f7f7);
+}
+
+.khu-gio-hang {
+    background:
+        radial-gradient(circle at 10% 20%, #fff, transparent 45%),
+        linear-gradient(135deg, #d0d0d0, #f5f5f5, #bdbdbd);
+}
+
+.khu-dat-hang {
+    background:
+        radial-gradient(ellipse at 80% 20%, #fff, transparent 45%),
+        linear-gradient(135deg, #eee, #d0d0d0, #f8f8f8);
+}
+
+/* 6. TIEU DE */
 .tieu-de-khu {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 38px;
 }
 
 .tieu-de-khu > p {
@@ -146,53 +193,51 @@ body {
 }
 
 .tieu-de-khu h2 {
-    font-size: 26px;
-    letter-spacing: 2px;
-    margin-top: 5px;
+    font-size: 27px;
+    letter-spacing: 3px;
+    margin-top: 6px;
+    font-weight: 800;
 }
 
 .tieu-de-khu span {
     display: block;
-    width: 55px;
+    width: 75px;
     height: 3px;
-    background: #222;
+    background: linear-gradient(90deg, #888, #111, #aaa);
     margin: 15px auto 0;
 }
 
-/* ==============================
-   TIM KIEM
-============================== */
-
+/* 7. TIM KIEM */
 .tim-kiem {
     display: block;
     width: 100%;
     max-width: 450px;
-    margin: 0 auto 20px;
-    padding: 13px 16px;
+    margin: 0 auto 22px;
+    padding: 14px 18px;
     border: 1px solid #bbb;
     border-radius: 5px;
-    background: white;
+    background: #fff;
     outline: none;
+    font-size: 14px;
+    transition: 0.3s;
 }
 
 .tim-kiem:focus {
     border-color: #222;
+    box-shadow: 0 0 0 3px #00000010;
 }
 
-/* ==============================
-   LOC DANH MUC
-============================== */
-
+/* 8. LOC DANH MUC */
 .bo-loc {
     display: flex;
     justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
-    margin-bottom: 35px;
+    margin-bottom: 38px;
 }
 
 .loc {
-    padding: 10px 20px;
+    padding: 11px 22px;
     border: 1px solid #777;
     background: transparent;
     color: #222;
@@ -208,50 +253,41 @@ body {
     border-color: #171717;
 }
 
-/* ==============================
-   DANH SACH SAN PHAM
-============================== */
-
+/* 9. DANH SACH SAN PHAM */
 .danh-sach {
     display: grid;
-    grid-template-columns: minmax(0, 420px);
+    grid-template-columns:
+        repeat(auto-fit, minmax(min(100%, 280px), 340px));
     justify-content: center;
     gap: 30px;
-    max-width: 100%;
+    max-width: 1200px;
     margin: auto;
 }
 
-/* ==============================
-   THE SAN PHAM 3D
-============================== */
-
+/* 10. THE SAN PHAM 3D */
 .san-pham {
     position: relative;
     overflow: hidden;
-    padding: 16px;
-    border: 1px solid #d1d1d1;
-    border-radius: 12px;
-    background: linear-gradient(
-        145deg,
-        #ffffff,
-        #e5e5e5 55%,
-        #c9c9c9
-    );
+    padding: 14px;
+    border: 1px solid #fff;
+    border-radius: 7px;
+    background: linear-gradient(145deg, #fff, #e6e6e6 55%, #ccc);
     box-shadow:
-        0 15px 30px #0002,
-        0 5px 10px #0001,
-        inset 0 1px 2px #fff;
-    transition: transform 0.35s, box-shadow 0.35s;
+        0 18px 38px #0002,
+        0 5px 12px #0001,
+        inset 0 1px 3px #fff;
+    transition: transform 0.4s, box-shadow 0.4s;
 }
 
 .san-pham:hover {
     transform: translateY(-9px);
     box-shadow:
-        0 25px 45px #0003,
+        0 28px 50px #0004,
         0 10px 20px #0002,
-        inset 0 1px 2px white;
+        inset 0 1px 3px #fff;
 }
 
+/* 11. KHUNG ANH SAN PHAM */
 .khung-anh {
     position: relative;
     width: 100%;
@@ -260,15 +296,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: 4px;
     background:
-        radial-gradient(
-            ellipse at center,
-            #ffffff 0%,
-            #eeeeee 42%,
-            #c9c9c9 100%
-        );
-    box-shadow: inset 0 0 25px #7772;
+        radial-gradient(ellipse at center, #fff, #eee 45%, #c6c6c6);
+    box-shadow:
+        inset 0 0 30px #7772,
+        0 5px 15px #0001;
 }
 
 .khung-anh::after {
@@ -290,11 +323,11 @@ body {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    transition: transform 0.4s;
+    transition: transform 0.45s;
 }
 
 .san-pham:hover .khung-anh img {
-    transform: scale(1.04);
+    transform: scale(1.05);
 }
 
 .nhan-moi {
@@ -309,10 +342,7 @@ body {
     letter-spacing: 2px;
 }
 
-/* ==============================
-   ANH NHO
-============================== */
-
+/* 12. ANH NHO */
 .anh-nho {
     display: flex;
     justify-content: center;
@@ -325,7 +355,7 @@ body {
     height: 65px;
     object-fit: cover;
     border: 2px solid #bbb;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
     background: white;
     transition: 0.25s;
@@ -336,10 +366,7 @@ body {
     transform: translateY(-3px);
 }
 
-/* ==============================
-   THONG TIN SAN PHAM
-============================== */
-
+/* 13. THONG TIN SAN PHAM */
 .thong-tin-san-pham {
     padding: 10px 5px 5px;
 }
@@ -366,7 +393,7 @@ body {
     width: 100%;
     padding: 14px;
     border: none;
-    border-radius: 4px;
+    border-radius: 3px;
     background: linear-gradient(135deg, #333, #050505);
     color: white;
     font-weight: bold;
@@ -380,32 +407,22 @@ body {
     transform: translateY(-2px);
 }
 
-/* ==============================
-   KHONG TIM THAY
-============================== */
-
+/* 14. KHONG TIM THAY */
 .empty-search {
     text-align: center;
     margin: 30px 0;
     color: #777;
 }
 
-/* ==============================
-   GIO HANG
-============================== */
-
-.khu-gio-hang {
-    background: linear-gradient(135deg, #f8f8f8, #dedede);
-}
-
+/* 15. GIO HANG */
 .khung-gio-hang {
-    max-width: 700px;
+    max-width: 750px;
     margin: auto;
-    padding: 25px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background: white;
-    box-shadow: 0 12px 30px #0001;
+    padding: 28px;
+    border: 1px solid #fff;
+    border-radius: 7px;
+    background: linear-gradient(145deg, #fff, #f0f0f0);
+    box-shadow: 0 18px 40px #0002;
 }
 
 .san-pham-gio {
@@ -454,18 +471,15 @@ body {
     margin: 8px 0;
 }
 
-/* ==============================
-   DAT HANG
-============================== */
-
+/* 16. DAT HANG */
 .khung-dat-hang {
     max-width: 600px;
     margin: auto;
     padding: 30px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background: white;
-    box-shadow: 0 12px 30px #0001;
+    border: 1px solid #fff;
+    border-radius: 7px;
+    background: linear-gradient(145deg, #fff, #f0f0f0);
+    box-shadow: 0 18px 40px #0002;
 }
 
 .khung-dat-hang > label {
@@ -484,11 +498,13 @@ body {
     font-family: Arial, sans-serif;
     font-size: 14px;
     outline: none;
+    background: #fff;
 }
 
 .khung-dat-hang input:focus,
 .khung-dat-hang textarea:focus {
     border-color: #222;
+    box-shadow: 0 0 0 3px #00000010;
 }
 
 .khung-dat-hang textarea {
@@ -517,16 +533,18 @@ body {
     margin-top: 25px;
     padding: 15px;
     border: none;
-    border-radius: 4px;
+    border-radius: 3px;
     color: white;
     background: linear-gradient(135deg, #333, #050505);
     font-weight: bold;
+    letter-spacing: 1px;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .order-button:hover {
     background: #555;
+    transform: translateY(-2px);
 }
 
 .order-button:disabled {
@@ -547,15 +565,13 @@ body {
     padding-left: 25px;
 }
 
-/* ==============================
-   CHAN TRANG
-============================== */
-
+/* 17. CHAN TRANG */
 footer {
-    padding: 35px 15px;
+    padding: 40px 15px;
     text-align: center;
     color: white;
-    background: #111;
+    background: linear-gradient(135deg, #050505, #292929, #080808);
+    border-top: 1px solid #777;
 }
 
 footer h2 {
@@ -569,27 +585,42 @@ footer p {
     margin: 5px 0;
 }
 
-/* ==============================
-   DIEN THOAI
-============================== */
-
+/* 18. DIEN THOAI */
 @media (max-width: 600px) {
+    .dau-trang {
+        min-height: 85px;
+        padding: 14px;
+    }
 
-    .logo {
-        font-size: 27px;
+    .logo-db {
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+    }
+
+    .logo-chu h1 {
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+
+    .logo-chu p {
+        font-size: 8px;
+        letter-spacing: 2px;
     }
 
     .thanh-menu {
         gap: 18px;
+        padding: 13px 8px;
     }
 
-    .banner {
-        min-height: 320px;
-        padding: 55px 15px;
+    .thanh-menu a {
+        font-size: 12px;
     }
 
-    .banner h1 {
-        font-size: 24px;
+    .banner,
+    .banner.banner-moi {
+        height: 260px;
+        background-position: center;
     }
 
     .khu-san-pham,
@@ -619,155 +650,4 @@ footer p {
     .san-pham-gio {
         align-items: flex-start;
     }
-}
-/* =================================
-   DAT BOUTIQUE - LUXURY 3D BACKGROUND
-================================= */
-
-/* NEN TOAN TRANG */
-body {
-    background:
-        radial-gradient(
-            ellipse at 15% 10%,
-            #ffffff 0%,
-            transparent 38%
-        ),
-        radial-gradient(
-            ellipse at 85% 35%,
-            #d0d0d0 0%,
-            transparent 40%
-        ),
-        linear-gradient(
-            135deg,
-            #f5f5f5 0%,
-            #dedede 35%,
-            #f8f8f8 65%,
-            #c8c8c8 100%
-        );
-    background-attachment: fixed;
-}
-
-/* KHU VUC SAN PHAM */
-.khu-san-pham {
-    position: relative;
-    background:
-        radial-gradient(
-            ellipse at 50% 0%,
-            #ffffff 0%,
-            transparent 55%
-        ),
-        linear-gradient(
-            180deg,
-            #eeeeee 0%,
-            #d5d5d5 50%,
-            #f5f5f5 100%
-        );
-}
-
-/* HIEN UNG ANH SANG CHO KHU SAN PHAM */
-.khu-san-pham::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 10%;
-    width: 80%;
-    height: 2px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        #ffffff,
-        #999999,
-        #ffffff,
-        transparent
-    );
-    opacity: 0.8;
-}
-
-/* KHU VUC GIO HANG */
-.khu-gio-hang {
-    background:
-        radial-gradient(
-            circle at 10% 20%,
-            #ffffff,
-            transparent 45%
-        ),
-        linear-gradient(
-            135deg,
-            #d0d0d0,
-            #f5f5f5,
-            #bdbdbd
-        );
-}
-
-/* KHU VUC DAT HANG */
-.khu-dat-hang {
-    background:
-        radial-gradient(
-            ellipse at 80% 20%,
-            #ffffff,
-            transparent 45%
-        ),
-        linear-gradient(
-            135deg,
-            #eeeeee,
-            #d0d0d0,
-            #f8f8f8
-        );
-}
-
-/* BANNER SANG TRONG HON */
-.banner {
-    background:
-        radial-gradient(
-            ellipse at 50% 35%,
-            #666666 0%,
-            #333333 35%,
-            #151515 75%,
-            #050505 100%
-        );
-    box-shadow:
-        inset 0 -25px 50px #0005,
-        inset 0 15px 35px #ffffff12;
-}
-
-/* THE SAN PHAM NOI BAT HON */
-.san-pham {
-    border: 1px solid #ffffff;
-    box-shadow:
-        0 20px 40px #0002,
-        0 5px 15px #0001,
-        inset 0 1px 3px #ffffff;
-}
-
-/* HIEN UNG KHI DI CHUOT */
-.san-pham:hover {
-    transform: translateY(-10px) scale(1.01);
-    box-shadow:
-        0 30px 55px #0003,
-        0 10px 20px #0002,
-        inset 0 1px 5px #ffffff;
-}
-
-/* KHUNG ANH SAN PHAM */
-.khung-anh {
-    background:
-        radial-gradient(
-            ellipse at 50% 35%,
-            #ffffff 0%,
-            #eeeeee 45%,
-            #c4c4c4 100%
-        );
-    box-shadow:
-        inset 0 0 35px #7772,
-        0 5px 15px #0001;
-}
-
-/* KHUNG GIO HANG VA DAT HANG */
-.khung-gio-hang,
-.khung-dat-hang {
-    border: 1px solid #ffffff;
-    box-shadow:
-        0 20px 45px #0002,
-        0 5px 15px #0001,
-        inset 0 1px 3px #ffffff;
 }
