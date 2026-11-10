@@ -761,3 +761,41 @@ footer {
         gap: 10px;
     }
 }
+/* THANH TIM KIEM */
+#timKiem {
+    display: block;
+    width: 100%;
+    max-width: 550px;
+    height: 48px;
+    margin: 25px auto 30px;
+    padding: 0 20px;
+
+    border: 1px solid #d8c9b8;
+    border-radius: 30px;
+
+    background-color: #fffdf9;
+    color: #3d3028;
+
+    font-size: 15px;
+    outline: none;
+
+    transition: all 0.3s ease;
+}
+
+#timKiem:focus {
+    border-color: #8b6b50;
+    box-shadow: 0 0 0 3px rgba(139, 107, 80, 0.12);
+}
+
+#timKiem::placeholder {
+    color: #a99a8b;
+}
+
+/* HIEN THI TOT TREN DIEN THOAI */
+@media (max-width: 768px) {
+    #timKiem {
+        width: 90%;
+        height: 45px;
+        margin: 20px auto;
+    }
+}
