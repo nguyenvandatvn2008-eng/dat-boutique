@@ -32,56 +32,75 @@
         </div>
     </header>
 
+
     <!-- BANNER -->
     <section class="banner">
         <h2>Chào mừng đến với DAT BOUTIQUE</h2>
         <p>Thời trang đẹp - Giá cả hợp lý</p>
     </section>
 
+
     <!-- DANH SACH SAN PHAM -->
     <main id="sanpham">
+
         <h2>SẢN PHẨM CỦA CHÚNG TÔI</h2>
 
         <div class="danh-sach">
 
             <!-- SAN PHAM 1 -->
             <div class="san-pham">
+
                 <img src="aothun.jpg" alt="Áo thun nam">
+
                 <h3>Áo thun nam</h3>
+
                 <p>120.000đ</p>
 
                 <button type="button"
                     onclick="themGioHang('Áo thun nam', 120000)">
                     Thêm vào giỏ
                 </button>
+
             </div>
+
 
             <!-- SAN PHAM 2 -->
             <div class="san-pham">
+
                 <img src="download.webp" alt="Quần jean">
+
                 <h3>Quần jean</h3>
+
                 <p>250.000đ</p>
 
                 <button type="button"
                     onclick="themGioHang('Quần jean', 250000)">
                     Thêm vào giỏ
                 </button>
+
             </div>
+
 
             <!-- SAN PHAM 3 -->
             <div class="san-pham">
+
                 <img src="images.jpg" alt="Áo khoác">
+
                 <h3>Áo khoác</h3>
+
                 <p>350.000đ</p>
 
                 <button type="button"
                     onclick="themGioHang('Áo khoác', 350000)">
                     Thêm vào giỏ
                 </button>
+
             </div>
 
         </div>
+
     </main>
+
 
     <!-- GIO HANG -->
     <section id="giohang">
@@ -95,6 +114,7 @@
         <h3>
             Tổng tiền: <span id="tongTien">0đ</span>
         </h3>
+
 
         <!-- THANH TOAN -->
         <div class="thanh-toan">
@@ -110,27 +130,46 @@
             <textarea id="diaChi"
                 placeholder="Địa chỉ nhận hàng"></textarea>
 
+
             <h3>Chọn phương thức thanh toán</h3>
+
 
             <!-- THANH TOAN QR -->
             <div style="display:block; margin-bottom:10px;">
+
                 <label style="display:block;">
-                    <input type="radio" name="thanhToan" value="QR">
+
+                    <input type="radio"
+                        name="thanhToan"
+                        value="QR">
+
                     Thanh toán bằng QR ngân hàng
+
                 </label>
+
             </div>
+
 
             <!-- THANH TOAN COD -->
             <div style="display:block; margin-bottom:15px;">
+
                 <label style="display:block;">
-                    <input type="radio" name="thanhToan" value="COD">
+
+                    <input type="radio"
+                        name="thanhToan"
+                        value="COD">
+
                     Thanh toán khi nhận hàng (COD)
+
                 </label>
+
             </div>
+
 
             <button type="button" onclick="datHang()">
                 XÁC NHẬN ĐẶT HÀNG
             </button>
+
 
             <div id="ketQuaThanhToan"></div>
 
@@ -138,11 +177,20 @@
 
     </section>
 
+
     <!-- CHAN TRANG -->
     <footer id="lienhe">
+
         <p>DAT BOUTIQUE - Cửa hàng thời trang</p>
+
         <p>Hotline: 0366 258 527</p>
+
     </footer>
+
+
+    <!-- KET NOI EMAILJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 
     <!-- KET NOI JAVASCRIPT -->
     <script src="./script.js"></script>
