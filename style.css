@@ -620,3 +620,154 @@ footer p {
         align-items: flex-start;
     }
 }
+/* =================================
+   DAT BOUTIQUE - LUXURY 3D BACKGROUND
+================================= */
+
+/* NEN TOAN TRANG */
+body {
+    background:
+        radial-gradient(
+            ellipse at 15% 10%,
+            #ffffff 0%,
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 85% 35%,
+            #d0d0d0 0%,
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #f5f5f5 0%,
+            #dedede 35%,
+            #f8f8f8 65%,
+            #c8c8c8 100%
+        );
+    background-attachment: fixed;
+}
+
+/* KHU VUC SAN PHAM */
+.khu-san-pham {
+    position: relative;
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            #ffffff 0%,
+            transparent 55%
+        ),
+        linear-gradient(
+            180deg,
+            #eeeeee 0%,
+            #d5d5d5 50%,
+            #f5f5f5 100%
+        );
+}
+
+/* HIEN UNG ANH SANG CHO KHU SAN PHAM */
+.khu-san-pham::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #ffffff,
+        #999999,
+        #ffffff,
+        transparent
+    );
+    opacity: 0.8;
+}
+
+/* KHU VUC GIO HANG */
+.khu-gio-hang {
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            #ffffff,
+            transparent 45%
+        ),
+        linear-gradient(
+            135deg,
+            #d0d0d0,
+            #f5f5f5,
+            #bdbdbd
+        );
+}
+
+/* KHU VUC DAT HANG */
+.khu-dat-hang {
+    background:
+        radial-gradient(
+            ellipse at 80% 20%,
+            #ffffff,
+            transparent 45%
+        ),
+        linear-gradient(
+            135deg,
+            #eeeeee,
+            #d0d0d0,
+            #f8f8f8
+        );
+}
+
+/* BANNER SANG TRONG HON */
+.banner {
+    background:
+        radial-gradient(
+            ellipse at 50% 35%,
+            #666666 0%,
+            #333333 35%,
+            #151515 75%,
+            #050505 100%
+        );
+    box-shadow:
+        inset 0 -25px 50px #0005,
+        inset 0 15px 35px #ffffff12;
+}
+
+/* THE SAN PHAM NOI BAT HON */
+.san-pham {
+    border: 1px solid #ffffff;
+    box-shadow:
+        0 20px 40px #0002,
+        0 5px 15px #0001,
+        inset 0 1px 3px #ffffff;
+}
+
+/* HIEN UNG KHI DI CHUOT */
+.san-pham:hover {
+    transform: translateY(-10px) scale(1.01);
+    box-shadow:
+        0 30px 55px #0003,
+        0 10px 20px #0002,
+        inset 0 1px 5px #ffffff;
+}
+
+/* KHUNG ANH SAN PHAM */
+.khung-anh {
+    background:
+        radial-gradient(
+            ellipse at 50% 35%,
+            #ffffff 0%,
+            #eeeeee 45%,
+            #c4c4c4 100%
+        );
+    box-shadow:
+        inset 0 0 35px #7772,
+        0 5px 15px #0001;
+}
+
+/* KHUNG GIO HANG VA DAT HANG */
+.khung-gio-hang,
+.khung-dat-hang {
+    border: 1px solid #ffffff;
+    box-shadow:
+        0 20px 45px #0002,
+        0 5px 15px #0001,
+        inset 0 1px 3px #ffffff;
+}
