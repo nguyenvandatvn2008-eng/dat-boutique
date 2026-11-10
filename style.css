@@ -799,3 +799,43 @@ footer {
         margin: 20px auto;
     }
 }
+/* NHOM NUT LOC SAN PHAM */
+.loc-san-pham {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px auto 30px;
+}
+
+/* CAC NUT LOC */
+.loc-san-pham button {
+    padding: 10px 25px;
+    border: 1px solid #cbb9a5;
+    border-radius: 25px;
+    background: #fffdf9;
+    color: #5a4635;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.loc-san-pham button:hover {
+    background: #5a4635;
+    color: white;
+    border-color: #5a4635;
+    transform: translateY(-2px);
+}
+
+/* DIEN THOAI */
+@media (max-width: 768px) {
+    .loc-san-pham {
+        gap: 8px;
+    }
+
+    .loc-san-pham button {
+        padding: 9px 18px;
+    }
+}
