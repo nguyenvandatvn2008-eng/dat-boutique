@@ -73,9 +73,10 @@
     </section>
 
 
-    <!-- SAN PHAM -->
+    <!-- NOI DUNG CHINH -->
     <main>
 
+        <!-- SAN PHAM -->
         <section id="san-pham">
 
             <div class="tieu-de-khu-vuc">
@@ -89,7 +90,7 @@
             </div>
 
 
-            <!-- TIM KIEM -->
+            <!-- TIM KIEM VA LOC -->
             <div class="khu-vuc-loc">
 
                 <div class="o-tim-kiem">
@@ -103,7 +104,6 @@
                 </div>
 
 
-                <!-- LOC DANH MUC -->
                 <div class="danh-sach-loc">
 
                     <button
@@ -324,40 +324,142 @@
         </section>
 
 
-        <!-- GIO HANG -->
+        <!-- =================================
+             GIO HANG DAT BOUTIQUE
+        ================================== -->
         <section id="giohang" class="khu-vuc-gio-hang">
 
-            <div class="noi-dung">
+            <div class="gio-hang-container">
 
-                <div class="tieu-de-khu-vuc">
+                <!-- TIEU DE -->
+                <div class="gio-hang-tieu-de">
 
-                    <p>YOUR SHOPPING</p>
+                    <span>YOUR SHOPPING</span>
 
                     <h2>GIỎ HÀNG CỦA BẠN</h2>
 
-                </div>
-
-
-                <div id="danhSachGio">
-
-                    <p class="gio-hang-trong">
-                        Giỏ hàng của bạn đang trống.
+                    <p>
+                        Kiểm tra sản phẩm và hoàn tất đơn hàng của bạn
                     </p>
 
                 </div>
 
 
-                <div class="tong-tien-gio-hang">
+                <!-- BO CUC GIO HANG -->
+                <div class="gio-hang-layout">
 
-                    <p>
-                        Số lượng sản phẩm:
-                        <strong id="soluong">0</strong>
-                    </p>
 
-                    <p>
-                        Tổng thanh toán:
-                        <strong id="tongTien">0đ</strong>
-                    </p>
+                    <!-- COT TRAI -->
+                    <div class="gio-hang-ben-trai">
+
+                        <div class="gio-hang-thanh-tieu-de">
+
+                            <h3>SẢN PHẨM ĐÃ CHỌN</h3>
+
+                            <span>DAT BOUTIQUE</span>
+
+                        </div>
+
+
+                        <!-- JAVASCRIPT HIEN THI SAN PHAM -->
+                        <div id="danhSachGio">
+
+                            <p class="gio-hang-trong">
+                                Giỏ hàng của bạn đang trống.
+                            </p>
+
+                        </div>
+
+
+                        <a
+                            href="#san-pham"
+                            class="nut-tiep-tuc-mua"
+                        >
+                            ← TIẾP TỤC MUA SẮM
+                        </a>
+
+                    </div>
+
+
+                    <!-- COT PHAI -->
+                    <aside class="gio-hang-ben-phai">
+
+                        <div class="gio-hang-tom-tat">
+
+                            <span class="tom-tat-nhan">
+                                ORDER SUMMARY
+                            </span>
+
+                            <h3>TÓM TẮT ĐƠN HÀNG</h3>
+
+
+                            <div class="tom-tat-dong">
+
+                                <span>Số lượng sản phẩm</span>
+
+                                <strong id="soluong">0</strong>
+
+                            </div>
+
+
+                            <div class="tom-tat-dong">
+
+                                <span>Phí vận chuyển</span>
+
+                                <strong>Liên hệ</strong>
+
+                            </div>
+
+
+                            <div class="tom-tat-duong-ke"></div>
+
+
+                            <div class="tom-tat-tong">
+
+                                <span>TỔNG THANH TOÁN</span>
+
+                                <strong id="tongTien">0đ</strong>
+
+                            </div>
+
+
+                            <a
+                                href="#dat-hang"
+                                class="nut-tien-hanh-thanh-toan"
+                            >
+                                TIẾN HÀNH THANH TOÁN
+
+                                <span>→</span>
+
+                            </a>
+
+
+                            <p class="tom-tat-chu-thich">
+                                Vui lòng kiểm tra thông tin trước khi đặt hàng.
+                            </p>
+
+                        </div>
+
+
+                        <!-- THONG TIN THUONG HIEU -->
+                        <div class="gio-hang-bao-dam">
+
+                            <span>✦</span>
+
+                            <div>
+
+                                <strong>DAT BOUTIQUE</strong>
+
+                                <p>
+                                    Phong cách thể thao – Tự tin mỗi ngày
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </aside>
+
 
                 </div>
 
@@ -366,7 +468,9 @@
         </section>
 
 
-        <!-- DAT HANG -->
+        <!-- =================================
+             DAT HANG
+        ================================== -->
         <section id="dat-hang" class="khu-vuc-dat-hang">
 
             <div class="tieu-de-khu-vuc">
@@ -384,6 +488,7 @@
                 onsubmit="event.preventDefault(); datHang();"
             >
 
+                <!-- HO TEN -->
                 <div class="form-nhom">
 
                     <label for="tenKhach">Họ và tên</label>
@@ -398,6 +503,7 @@
                 </div>
 
 
+                <!-- SO DIEN THOAI -->
                 <div class="form-nhom">
 
                     <label for="soDienThoai">Số điện thoại</label>
@@ -412,6 +518,7 @@
                 </div>
 
 
+                <!-- DIA CHI -->
                 <div class="form-nhom">
 
                     <label for="diaChi">Địa chỉ nhận hàng</label>
@@ -426,6 +533,7 @@
                 </div>
 
 
+                <!-- PHUONG THUC THANH TOAN -->
                 <div class="form-nhom">
 
                     <label for="thanhToan">
@@ -465,6 +573,7 @@
                 </div>
 
 
+                <!-- NUT DAT HANG -->
                 <button
                     type="submit"
                     id="nutDatHang"
@@ -480,22 +589,29 @@
     </main>
 
 
-    <!-- FOOTER -->
+    <!-- =================================
+         FOOTER
+    ================================== -->
     <footer class="chan-trang">
 
         <div class="chan-trang-noi-dung">
 
+
+            <!-- COT 1 -->
             <div>
 
                 <h3>DAT BOUTIQUE</h3>
 
                 <p>PREMIUM SPORTSWEAR COLLECTION</p>
 
-                <p>Phong cách thể thao - Khẳng định cá tính.</p>
+                <p>
+                    Phong cách thể thao - Khẳng định cá tính.
+                </p>
 
             </div>
 
 
+            <!-- COT 2 -->
             <div>
 
                 <h3>LIÊN KẾT</h3>
@@ -511,6 +627,7 @@
             </div>
 
 
+            <!-- COT 3 -->
             <div>
 
                 <h3>THÔNG TIN</h3>
@@ -520,6 +637,7 @@
                 <p>PREMIUM SPORTSWEAR</p>
 
             </div>
+
 
         </div>
 
