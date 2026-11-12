@@ -2,33 +2,20 @@
 // DAT BOUTIQUE - JAVASCRIPT
 // =====================================
 
-
-// =====================================
 // 1. GIO HANG
-// =====================================
-
 let gioHang = [];
 
-
-// =====================================
-// 2. KHOI TAO EMAILJS
-// =====================================
-
+// 2. EMAILJS
 if (typeof emailjs !== "undefined") {
     emailjs.init({
         publicKey: "uxPUUJpYMMZ3dycSn"
     });
 }
 
-
-// =====================================
 // 3. HAM HO TRO
-// =====================================
-
 function dinhDangTien(gia) {
     return Number(gia).toLocaleString("vi-VN") + "đ";
 }
-
 
 function anThongBaoCu() {
     const ketQua = document.getElementById("ketQuaThanhToan");
@@ -39,8 +26,6 @@ function anThongBaoCu() {
     }
 }
 
-
-// Lam sach noi dung truoc khi dua vao HTML
 function lamSachHTML(noiDung) {
     return String(noiDung).replace(/[&<>"']/g, function (kyTu) {
         const bangMa = {
@@ -55,83 +40,74 @@ function lamSachHTML(noiDung) {
     });
 }
 
-
-// =====================================
-// 4. DOI ANH SAN PHAM
-// =====================================
-
-// Moi san pham co anh lon rieng
+// 4. DOI ANH TRONG THE SAN PHAM
 function doiAnh(anh) {
-    const khungSanPham = anh.closest(".san-pham");
+    const theSanPham = anh.closest(".san-pham");
 
-    if (!khungSanPham) return;
+    if (!theSanPham) return;
 
-    const anhChinh = khungSanPham.querySelector(".anh-chinh");
+    const anhChinh = theSanPham.querySelector(".anh-chinh");
 
-    if (anhChinh && anh.src) {
+    if (anhChinh) {
         anhChinh.src = anh.src;
-        anhChinh.alt = anh.alt || "Anh san pham";
+        anhChinh.alt = anh.alt || "Ảnh sản phẩm";
     }
 }
 
+// 5. TINH GIA SALE 30%
+function tinhGiaSale(giaGoc) {
+    return Math.round(Number(giaGoc) * 0.7);
+}
 
-// =====================================
-// 5. THEM SAN PHAM VAO GIO
-// =====================================
+// 6. THEM VAO GIO HANG
+function themGioHang(ten, giaGoc, anh = "", soLuong = 1, mau = "", size = "") {
 
-function themGioHang(ten, gia, anh = "") {
+    giaGoc = Number(giaGoc);
+    soLuong = Number(soLuong);
 
-    gia = Number(gia);
-
-    if (!ten || !Number.isFinite(gia) || gia < 0) {
-        alert("Thong tin san pham khong hop le!");
+    if (
+        !ten ||
+        !Number.isFinite(giaGoc) ||
+        giaGoc <= 0 ||
+        !Number.isInteger(soLuong) ||
+        soLuong < 1
+    ) {
+        alert("Thông tin sản phẩm không hợp lệ!");
         return;
     }
 
+    const giaSale = tinhGiaSale(giaGoc);
+
+    const tenDayDu = ten + (mau ? " - " + mau : "") +
+        (size ? " - Size " + size : "");
+
     const sanPhamCu = gioHang.find(function (sp) {
-        return sp.ten === ten && sp.gia === gia;
+        return sp.ten === tenDayDu && sp.gia === giaSale;
     });
 
     if (sanPhamCu) {
-
-        sanPhamCu.soLuong++;
-
+        sanPhamCu.soLuong += soLuong;
     } else {
-
         gioHang.push({
-            ten: ten,
-            gia: gia,
+            ten: tenDayDu,
+            gia: giaSale,
+            giaGoc: giaGoc,
             anh: anh,
-            soLuong: 1
+            soLuong: soLuong
         });
-
     }
 
     hienThiGioHang();
     anThongBaoCu();
-
-    const gio = document.getElementById("giohang");
-
-    if (gio) {
-        gio.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-    }
 }
 
-
-// =====================================
-// 6. HIEN THI GIO HANG
-// =====================================
-
+// 7. HIEN THI GIO HANG
 function hienThiGioHang() {
-
     const danhSach = document.getElementById("danhSachGio");
-    const soLuong = document.getElementById("soluong");
-    const tongTien = document.getElementById("tongTien");
+    const oSoLuong = document.getElementById("soluong");
+    const oTongTien = document.getElementById("tongTien");
 
-    if (!danhSach || !soLuong || !tongTien) return;
+    if (!danhSach || !oSoLuong || !oTongTien) return;
 
     danhSach.innerHTML = "";
 
@@ -139,7 +115,6 @@ function hienThiGioHang() {
     let tongSanPham = 0;
 
     gioHang.forEach(function (sp, index) {
-
         tong += sp.gia * sp.soLuong;
         tongSanPham += sp.soLuong;
 
@@ -148,66 +123,47 @@ function hienThiGioHang() {
 
                 <div class="thong-tin-sp">
                     <strong>${lamSachHTML(sp.ten)}</strong>
-                    <span>${dinhDangTien(sp.gia)}</span>
+                    <span>Giá: ${dinhDangTien(sp.gia)}</span>
+                    <span>Số lượng: ${sp.soLuong}</span>
                 </div>
 
                 <div class="cart-quantity">
-
-                    <button
-                        type="button"
-                        aria-label="Giam so luong"
-                        onclick="thayDoiSoLuong(${index}, -1)"
-                    >
-                        −
-                    </button>
+                    <button type="button"
+                        onclick="thayDoiSoLuong(${index}, -1)">−</button>
 
                     <span>${sp.soLuong}</span>
 
-                    <button
-                        type="button"
-                        aria-label="Tang so luong"
-                        onclick="thayDoiSoLuong(${index}, 1)"
-                    >
-                        +
-                    </button>
-
+                    <button type="button"
+                        onclick="thayDoiSoLuong(${index}, 1)">+</button>
                 </div>
 
-                <button
-                    type="button"
+                <strong>${dinhDangTien(sp.gia * sp.soLuong)}</strong>
+
+                <button type="button"
                     class="nut-xoa"
-                    onclick="xoaSanPham(${index})"
-                >
+                    onclick="xoaSanPham(${index})">
                     Xóa
                 </button>
-
             </div>
         `;
     });
 
-    soLuong.innerText = tongSanPham;
-    tongTien.innerText = dinhDangTien(tong);
+    oSoLuong.innerText = tongSanPham;
+    oTongTien.innerText = dinhDangTien(tong);
 
     if (gioHang.length === 0) {
-
         danhSach.innerHTML = `
-            <p style="text-align:center; padding:25px;">
+            <p style="text-align:center;padding:25px;">
                 Giỏ hàng của bạn đang trống.
                 <br>
                 Hãy khám phá sản phẩm nhé!
             </p>
         `;
-
     }
 }
 
-
-// =====================================
-// 7. TANG GIAM SO LUONG
-// =====================================
-
+// 8. TANG GIAM SO LUONG
 function thayDoiSoLuong(index, thayDoi) {
-
     if (!gioHang[index]) return;
 
     gioHang[index].soLuong += Number(thayDoi);
@@ -220,13 +176,8 @@ function thayDoiSoLuong(index, thayDoi) {
     anThongBaoCu();
 }
 
-
-// =====================================
-// 8. XOA SAN PHAM
-// =====================================
-
+// 9. XOA SAN PHAM
 function xoaSanPham(index) {
-
     if (!gioHang[index]) return;
 
     gioHang.splice(index, 1);
@@ -235,37 +186,31 @@ function xoaSanPham(index) {
     anThongBaoCu();
 }
 
-
-// =====================================
-// 9. TIM KIEM VA LOC SAN PHAM
-// =====================================
-
+// 10. TIM KIEM VA LOC
 function locSanPham() {
-
     const oTimKiem = document.getElementById("timKiem");
 
     const tuKhoa = oTimKiem
         ? oTimKiem.value.toLowerCase().trim()
         : "";
 
-    const danhMucDangChon = document.querySelector(".loc.active");
+    const nutDangChon = document.querySelector(".loc.active");
 
-    const loai = danhMucDangChon
-        ? danhMucDangChon.dataset.category
+    const loai = nutDangChon
+        ? nutDangChon.dataset.category
         : "all";
 
-    const sanPhams = document.querySelectorAll(
+    const cacSanPham = document.querySelectorAll(
         ".danh-sach .san-pham"
     );
 
     let dem = 0;
 
-    sanPhams.forEach(function (sp) {
+    cacSanPham.forEach(function (sp) {
+        const oTen = sp.querySelector("h3");
 
-        const theTen = sp.querySelector("h3");
-
-        const ten = theTen
-            ? theTen.innerText.toLowerCase()
+        const ten = oTen
+            ? oTen.innerText.toLowerCase()
             : "";
 
         const dungTuKhoa = ten.includes(tuKhoa);
@@ -275,16 +220,11 @@ function locSanPham() {
             sp.dataset.category === loai;
 
         if (dungTuKhoa && dungDanhMuc) {
-
             sp.style.display = "";
             dem++;
-
         } else {
-
             sp.style.display = "none";
-
         }
-
     });
 
     const thongBao = document.getElementById("khongTimThay");
@@ -294,13 +234,185 @@ function locSanPham() {
     }
 }
 
+// 11. HIEN THI GIA SALE
+function apDungSale() {
+    document.querySelectorAll(".danh-sach .san-pham").forEach(
+        function (sp) {
+            const giaGoc = Number(sp.dataset.giaGoc);
+            const oGia = sp.querySelector(".gia-san-pham");
 
-// =====================================
-// 10. DAT HANG
-// =====================================
+            if (!giaGoc || !oGia) return;
 
+            const giaSale = tinhGiaSale(giaGoc);
+
+            oGia.innerHTML = `
+                <span class="gia-cu">${dinhDangTien(giaGoc)}</span>
+                <span class="gia-moi">${dinhDangTien(giaSale)}</span>
+            `;
+        }
+    );
+}
+
+// 12. TRANG CHI TIET SAN PHAM
+let sanPhamDangXem = null;
+
+function moChiTiet(theSanPham) {
+    if (!theSanPham) return;
+
+    const oTen = theSanPham.querySelector("h3");
+    const oAnh = theSanPham.querySelector(".anh-chinh");
+
+    if (!oTen || !oAnh) return;
+
+    const giaGoc = Number(theSanPham.dataset.giaGoc);
+
+    if (!giaGoc || !Number.isFinite(giaGoc)) {
+        alert("Sản phẩm chưa có giá hợp lệ!");
+        return;
+    }
+
+    const danhSachAnh = Array.from(
+        theSanPham.querySelectorAll(".anh-nho img")
+    ).map(function (anh) {
+        return anh.src;
+    });
+
+    if (!danhSachAnh.includes(oAnh.src)) {
+        danhSachAnh.unshift(oAnh.src);
+    }
+
+    sanPhamDangXem = {
+        ten: oTen.innerText.trim(),
+        giaGoc: giaGoc,
+        giaSale: tinhGiaSale(giaGoc),
+        anh: oAnh.src,
+        danhSachAnh: danhSachAnh
+    };
+
+    document.getElementById("chiTietTen").innerText =
+        sanPhamDangXem.ten;
+
+    document.getElementById("chiTietGiaCu").innerText =
+        dinhDangTien(sanPhamDangXem.giaGoc);
+
+    document.getElementById("chiTietGiaMoi").innerText =
+        dinhDangTien(sanPhamDangXem.giaSale);
+
+    document.getElementById("chiTietAnhLon").src =
+        sanPhamDangXem.anh;
+
+    // ANH THU NH0
+    const khungAnhNho = document.getElementById("chiTietAnhNho");
+
+    khungAnhNho.innerHTML = "";
+
+    sanPhamDangXem.danhSachAnh.forEach(function (duongDan) {
+        const anh = document.createElement("img");
+
+        anh.src = duongDan;
+        anh.alt = sanPhamDangXem.ten;
+
+        anh.addEventListener("click", function () {
+            document.getElementById("chiTietAnhLon").src = duongDan;
+        });
+
+        khungAnhNho.appendChild(anh);
+    });
+
+    // CHON SIZE THEO SAN PHAM
+    const oSize = document.getElementById("chiTietSize");
+
+    oSize.innerHTML = "";
+
+    const ten = sanPhamDangXem.ten.toLowerCase();
+
+    let cacSize;
+
+    if (ten.includes("mũ")) {
+        cacSize = ["Free size"];
+    } else if (ten.includes("dép")) {
+        cacSize = ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"];
+    } else {
+        cacSize = ["S", "M", "L", "XL", "XXL"];
+    }
+
+    cacSize.forEach(function (size) {
+        const luaChon = document.createElement("option");
+
+        luaChon.value = size;
+        luaChon.textContent = size;
+
+        oSize.appendChild(luaChon);
+    });
+
+    document.getElementById("chiTietSoLuong").value = 1;
+
+    const overlay = document.getElementById("chiTietOverlay");
+
+    overlay.classList.add("dang-mo");
+    overlay.setAttribute("aria-hidden", "false");
+
+    document.body.style.overflow = "hidden";
+}
+
+// 13. DONG TRANG CHI TIET
+function dongChiTiet() {
+    const overlay = document.getElementById("chiTietOverlay");
+
+    if (overlay) {
+        overlay.classList.remove("dang-mo");
+        overlay.setAttribute("aria-hidden", "true");
+    }
+
+    document.body.style.overflow = "";
+}
+
+// 14. THEM SAN PHAM TU TRANG CHI TIET
+function themTuChiTiet() {
+    if (!sanPhamDangXem) return;
+
+    const mau = document.getElementById("chiTietMau").value;
+    const size = document.getElementById("chiTietSize").value;
+
+    const soLuong = Number(
+        document.getElementById("chiTietSoLuong").value
+    );
+
+    if (!Number.isInteger(soLuong) || soLuong < 1 || soLuong > 20) {
+        alert("Vui lòng chọn số lượng từ 1 đến 20!");
+        return;
+    }
+
+    themGioHang(
+        sanPhamDangXem.ten,
+        sanPhamDangXem.giaGoc,
+        sanPhamDangXem.anh,
+        soLuong,
+        mau,
+        size
+    );
+
+    dongChiTiet();
+
+    alert("Đã thêm sản phẩm vào giỏ hàng!");
+}
+
+// 15. MUA NGAY
+function muaNgayChiTiet() {
+    themTuChiTiet();
+
+    const gio = document.getElementById("giohang");
+
+    if (gio) {
+        gio.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+}
+
+// 16. DAT HANG
 async function datHang() {
-
     const oHoTen = document.getElementById("hoTen");
     const oSoDienThoai = document.getElementById("soDienThoai");
     const oDiaChi = document.getElementById("diaChi");
@@ -310,16 +422,9 @@ async function datHang() {
     );
 
     const ketQua = document.getElementById("ketQuaThanhToan");
-
     const nutDatHang = document.querySelector(".order-button");
 
-    if (
-        !oHoTen ||
-        !oSoDienThoai ||
-        !oDiaChi ||
-        !ketQua ||
-        !nutDatHang
-    ) {
+    if (!oHoTen || !oSoDienThoai || !oDiaChi || !ketQua || !nutDatHang) {
         return;
     }
 
@@ -327,81 +432,53 @@ async function datHang() {
     const soDienThoai = oSoDienThoai.value.trim();
     const diaChi = oDiaChi.value.trim();
 
-
-    // Kiem tra gio hang
     if (gioHang.length === 0) {
         alert("Giỏ hàng đang trống!");
         return;
     }
 
-
-    // Kiem tra thong tin
     if (!hoTen || !soDienThoai || !diaChi) {
         alert("Vui lòng nhập đầy đủ thông tin!");
         return;
     }
 
+    const soChuan = soDienThoai.replace(/[\s.-]/g, "");
 
-    // Kiem tra so dien thoai
-    const soDienThoaiChuan = soDienThoai.replace(/[\s.-]/g, "");
-
-    if (!/^(0\d{9}|\+84\d{9})$/.test(soDienThoaiChuan)) {
-
-        alert(
-            "Vui lòng nhập số điện thoại hợp lệ (10 số hoặc +84 kèm 9 số)!"
-        );
-
+    if (!/^(0\d{9}|\+84\d{9})$/.test(soChuan)) {
+        alert("Vui lòng nhập số điện thoại hợp lệ!");
         return;
     }
 
-
-    // Kiem tra phuong thuc thanh toan
     if (!phuongThuc) {
         alert("Vui lòng chọn phương thức thanh toán!");
         return;
     }
 
-
-    // Kiem tra EmailJS
     if (typeof emailjs === "undefined") {
         alert("Không tải được EmailJS. Vui lòng tải lại trang!");
         return;
     }
 
-
-    // Tinh tong tien
     const tong = gioHang.reduce(function (sum, sp) {
         return sum + sp.gia * sp.soLuong;
     }, 0);
 
     const tongTienDinhDang = dinhDangTien(tong);
 
-
-    // Danh sach san pham
     const danhSachSanPham = gioHang.map(function (sp) {
-
-        return (
-            sp.ten +
-            " - SL: " +
-            sp.soLuong +
-            " - " +
-            dinhDangTien(sp.gia * sp.soLuong)
-        );
-
+        return sp.ten +
+            " - SL: " + sp.soLuong +
+            " - " + dinhDangTien(sp.gia * sp.soLuong);
     }).join("\n");
 
-
-    // Phuong thuc thanh toan
     const thanhToan = phuongThuc.value === "QR"
         ? "Vietcombank QR"
         : "Thanh toán khi nhận hàng (COD)";
 
-
-    // Hien thi trang thai
     ketQua.style.display = "block";
 
     ketQua.innerHTML = `
-        <div style="text-align:center; padding:20px;">
+        <div style="text-align:center;padding:20px;">
             <h3>ĐANG GỬI ĐƠN HÀNG...</h3>
             <p>Vui lòng chờ trong giây lát.</p>
         </div>
@@ -410,10 +487,7 @@ async function datHang() {
     nutDatHang.disabled = true;
     nutDatHang.innerText = "ĐANG XỬ LÝ...";
 
-
-    // Gui don hang qua EmailJS
     try {
-
         await emailjs.send(
             "service_338elep",
             "template_0xjohd8",
@@ -427,46 +501,21 @@ async function datHang() {
             }
         );
 
-
-        // Hien thi thong tin thanh toan
         const thongTinThanhToan = phuongThuc.value === "QR"
             ? `
-                <h3 style="color:#287a4b;">
-                    VIETCOMBANK QR
-                </h3>
-
+                <h3>VIETCOMBANK QR</h3>
                 <p>Vui lòng quét mã QR để thanh toán:</p>
-
-                <img
-                    src="./qr.jpg"
+                <img src="./qr.jpg"
                     alt="Mã QR Vietcombank"
-                    style="
-                        display:block;
-                        width:220px;
-                        max-width:100%;
-                        height:auto;
-                        margin:15px auto;
-                    "
-                >
-
-                <p>
-                    Vui lòng kiểm tra đúng số tiền trước khi chuyển khoản.
-                </p>
+                    style="display:block;width:220px;max-width:100%;height:auto;margin:15px auto;">
+                <p>Vui lòng kiểm tra đúng số tiền trước khi chuyển khoản.</p>
             `
             : `
-                <h3>
-                    THANH TOÁN KHI NHẬN HÀNG (COD)
-                </h3>
-
-                <p>
-                    Bạn sẽ thanh toán khi nhận được sản phẩm.
-                </p>
+                <h3>THANH TOÁN KHI NHẬN HÀNG (COD)</h3>
+                <p>Bạn sẽ thanh toán khi nhận được sản phẩm.</p>
             `;
 
-
-        // Danh sach san pham trong don hang
         const danhSachHienThi = gioHang.map(function (sp) {
-
             return `
                 <li>
                     ${lamSachHTML(sp.ten)}
@@ -474,17 +523,11 @@ async function datHang() {
                     - ${dinhDangTien(sp.gia * sp.soLuong)}
                 </li>
             `;
-
         }).join("");
 
-
-        // Hien thi ket qua thanh cong
         ketQua.innerHTML = `
-            <div style="text-align:center; padding:20px;">
-
-                <h2 style="color:#287a4b;">
-                    ✓ ĐẶT HÀNG THÀNH CÔNG!
-                </h2>
+            <div style="text-align:center;padding:20px;">
+                <h2 style="color:#287a4b;">✓ ĐẶT HÀNG THÀNH CÔNG!</h2>
 
                 <p>
                     Cảm ơn ${lamSachHTML(hoTen)}
@@ -495,44 +538,22 @@ async function datHang() {
 
                 <h3>THÔNG TIN ĐƠN HÀNG</h3>
 
-                <p>
-                    <strong>Họ tên:</strong>
-                    ${lamSachHTML(hoTen)}
-                </p>
-
-                <p>
-                    <strong>Số điện thoại:</strong>
-                    ${lamSachHTML(soDienThoai)}
-                </p>
-
-                <p>
-                    <strong>Địa chỉ:</strong>
-                    ${lamSachHTML(diaChi)}
-                </p>
+                <p><strong>Họ tên:</strong> ${lamSachHTML(hoTen)}</p>
+                <p><strong>Số điện thoại:</strong> ${lamSachHTML(soDienThoai)}</p>
+                <p><strong>Địa chỉ:</strong> ${lamSachHTML(diaChi)}</p>
 
                 <h4>Sản phẩm đã đặt:</h4>
+                <ul style="text-align:left;">${danhSachHienThi}</ul>
 
-                <ul style="text-align:left;">
-                    ${danhSachHienThi}
-                </ul>
-
-                <h3>
-                    Tổng tiền: ${tongTienDinhDang}
-                </h3>
+                <h3>Tổng tiền: ${tongTienDinhDang}</h3>
 
                 ${thongTinThanhToan}
 
-                <p>
-                    DAT BOUTIQUE sẽ sớm liên hệ xác nhận đơn hàng!
-                </p>
-
+                <p>DAT BOUTIQUE sẽ sớm liên hệ xác nhận đơn hàng!</p>
             </div>
         `;
 
-
-        // Chi xoa gio hang khi gui email thanh cong
         gioHang = [];
-
         hienThiGioHang();
 
         ketQua.scrollIntoView({
@@ -542,75 +563,81 @@ async function datHang() {
 
         alert("Đặt hàng thành công! Email thông báo đã được gửi.");
 
-
     } catch (error) {
-
         console.error("Lỗi gửi email:", error);
 
         ketQua.innerHTML = `
-            <div style="text-align:center; padding:20px;">
-
-                <h3 style="color:red;">
-                    KHÔNG GỬI ĐƯỢC EMAIL!
-                </h3>
-
-                <p>
-                    Vui lòng thử lại.
-                    Giỏ hàng của bạn vẫn được giữ nguyên.
-                </p>
-
+            <div style="text-align:center;padding:20px;">
+                <h3 style="color:red;">KHÔNG GỬI ĐƯỢC EMAIL!</h3>
+                <p>Vui lòng thử lại. Giỏ hàng của bạn vẫn được giữ nguyên.</p>
             </div>
         `;
 
         alert("Gửi email thất bại! Vui lòng kiểm tra lại EmailJS.");
 
     } finally {
-
         nutDatHang.disabled = false;
-
         nutDatHang.innerText = "XÁC NHẬN ĐẶT HÀNG →";
+    }
+}
 
+// 17. KHOI TAO CAC CHUC NANG
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Tim kiem
+    const oTimKiem = document.getElementById("timKiem");
+
+    if (oTimKiem) {
+        oTimKiem.addEventListener("input", locSanPham);
     }
 
-}
+    // Loc danh muc
+    const cacNutLoc = document.querySelectorAll(".loc");
 
+    cacNutLoc.forEach(function (nut) {
+        nut.addEventListener("click", function () {
+            cacNutLoc.forEach(function (item) {
+                item.classList.remove("active");
+            });
 
-// =====================================
-// 11. KHOI TAO TIM KIEM
-// =====================================
-
-const oTimKiem = document.getElementById("timKiem");
-
-if (oTimKiem) {
-    oTimKiem.addEventListener("input", locSanPham);
-}
-
-
-// =====================================
-// 12. KHOI TAO LOC DANH MUC
-// =====================================
-
-const danhMuc = document.querySelectorAll(".loc");
-
-danhMuc.forEach(function (nut) {
-
-    nut.addEventListener("click", function () {
-
-        danhMuc.forEach(function (item) {
-            item.classList.remove("active");
+            nut.classList.add("active");
+            locSanPham();
         });
-
-        nut.classList.add("active");
-
-        locSanPham();
-
     });
 
-});
+    // Bam anh va ten de mo chi tiet
+    document.querySelectorAll(".danh-sach .san-pham").forEach(
+        function (sp) {
+            const anh = sp.querySelector(".anh-chinh");
+            const ten = sp.querySelector("h3");
 
+            if (anh) {
+                anh.addEventListener("click", function () {
+                    moChiTiet(sp);
+                });
+            }
 
-// =====================================
-// 13. KHOI TAO GIO HANG
-// =====================================
+            if (ten) {
+                ten.addEventListener("click", function () {
+                    moChiTiet(sp);
+                });
+            }
+        }
+    );
 
-hienThiGioHang();
+    // Ap dung SALE
+    apDungSale();
+
+    // Hien thi gio hang
+    hienThiGioHang();
+
+    // Bam nen toi de dong chi tiet
+    const overlay = document.getElementById("chiTietOverlay");
+
+    if (overlay) {
+        overlay.addEventListener("click", function (event) {
+            if (event.target === overlay) {
+                dongChiTiet();
+            }
+        });
+    }
