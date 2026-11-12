@@ -683,3 +683,214 @@ footer p {
     display: block;
     z-index: 5;
 }
+/* =====================================
+   SALE 30% - BLACK & SILVER
+===================================== */
+
+.gia-san-pham .gia-cu {
+    color: #888;
+    text-decoration: line-through;
+    font-size: 14px;
+    font-weight: normal;
+    margin-right: 8px;
+}
+
+.gia-san-pham .gia-moi {
+    color: #a40000;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.nhan-moi {
+    background: linear-gradient(135deg, #eeeeee, #999999, #f8f8f8);
+    color: #111;
+    font-weight: bold;
+    border: 1px solid #777;
+}
+
+/* Bấm ảnh và tên để xem chi tiết */
+.san-pham .anh-chinh,
+.san-pham .thong-tin-san-pham h3 {
+    cursor: pointer;
+}
+
+/* =====================================
+   TRANG CHI TIET SAN PHAM
+===================================== */
+
+.chi-tiet-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    overflow-y: auto;
+    padding: 25px;
+    background: #000b;
+}
+
+.chi-tiet-overlay.dang-mo {
+    display: block;
+}
+
+.chi-tiet-khung {
+    position: relative;
+    width: 100%;
+    max-width: 1250px;
+    margin: 25px auto;
+    padding: 35px;
+    background: #f7f7f7;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    box-shadow: 0 20px 70px #0008;
+}
+
+.dong-chi-tiet {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #aaa;
+    background: #fff;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.chi-tiet-noi-dung {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 35px;
+    margin-top: 20px;
+}
+
+.chi-tiet-anh-lon {
+    width: 100%;
+    height: 570px;
+    object-fit: contain;
+    background: #e9e9e9;
+}
+
+.chi-tiet-anh-nho {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.chi-tiet-anh-nho img {
+    width: 75px;
+    height: 85px;
+    object-fit: contain;
+    background: #e5e5e5;
+    border: 1px solid #bbb;
+    cursor: pointer;
+}
+
+.chi-tiet-anh-nho img:hover {
+    border: 2px solid #111;
+}
+
+.chi-tiet-thong-tin {
+    padding: 15px 0;
+}
+
+.chi-tiet-thong-tin h2 {
+    font-size: 27px;
+    margin-bottom: 12px;
+}
+
+.chi-tiet-gia-cu {
+    color: #888;
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+
+.chi-tiet-gia-moi {
+    color: #a00000;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.chi-tiet-sale {
+    display: inline-block;
+    padding: 3px 8px;
+    margin-left: 8px;
+    color: #fff;
+    background: #222;
+    font-size: 12px;
+}
+
+.chi-tiet-duong-ke {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 22px 0;
+}
+
+.chi-tiet-lua-chon {
+    margin: 18px 0;
+}
+
+.chi-tiet-lua-chon label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.chi-tiet-lua-chon select,
+.chi-tiet-lua-chon input {
+    padding: 11px;
+    min-width: 110px;
+    border: 1px solid #aaa;
+    background: white;
+}
+
+.chi-tiet-nut {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 12px;
+    border: 1px solid #171717;
+    background: #171717;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.chi-tiet-nut:hover {
+    background: #555;
+}
+
+.chi-tiet-nut.phu {
+    background: white;
+    color: #171717;
+}
+
+.chi-tiet-mo-ta {
+    margin-top: 25px;
+    line-height: 1.9;
+}
+
+@media (max-width: 750px) {
+    .chi-tiet-overlay {
+        padding: 8px;
+    }
+
+    .chi-tiet-khung {
+        margin: 8px auto;
+        padding: 45px 15px 20px;
+    }
+
+    .chi-tiet-noi-dung {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .chi-tiet-anh-lon {
+        height: 350px;
+    }
+
+    .chi-tiet-thong-tin h2 {
+        font-size: 22px;
+    }
+}
