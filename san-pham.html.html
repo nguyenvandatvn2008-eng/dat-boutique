@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chi tiết sản phẩm DAT BOUTIQUE">
+    <title>Chi tiết sản phẩm | DAT BOUTIQUE</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+</head>
+<body>
+
+    <header class="dau-trang">
+        <div class="logo-khung">
+            <div class="logo-db">DB</div>
+            <div class="logo-chu">
+                <h1>DAT <span>BOUTIQUE</span></h1>
+                <p>YOUR STYLE · YOUR IDENTITY</p>
+            </div>
+        </div>
+    </header>
+
+    <nav class="thanh-menu">
+        <a href="./index.html">TRANG CHỦ</a>
+        <a href="./index.html#san-pham">SẢN PHẨM</a>
+        <a href="./index.html#giohang">GIỎ HÀNG</a>
+        <a href="./index.html#dat-hang">ĐẶT HÀNG</a>
+    </nav>
+
+    <main class="trang-chi-tiet">
+        <div class="duong-dan">
+            <a href="./index.html">Trang chủ</a>
+            <span> / </span>
+            <span>Chi tiết sản phẩm</span>
+        </div>
+
+        <section id="trangChiTietSanPham" class="chi-tiet-page">
+
+            <div class="chi-tiet-gallery">
+                <div id="chiTietAnhNho" class="chi-tiet-anh-nho"></div>
+
+                <div class="chi-tiet-anh-chinh">
+                    <img id="chiTietAnhLon" src="" alt="Ảnh sản phẩm">
+                </div>
+            </div>
+
+            <div class="chi-tiet-thong-tin">
+                <p class="chi-tiet-nhan">DAT BOUTIQUE · PREMIUM COLLECTION</p>
+
+                <h1 id="chiTietTen">Đang tải sản phẩm...</h1>
+
+                <p class="ma-san-pham">
+                    Mã sản phẩm: <strong id="chiTietMa"></strong>
+                </p>
+
+                <div class="chi-tiet-gia">
+                    <del id="chiTietGiaCu"></del>
+                    <strong id="chiTietGiaMoi"></strong>
+                    <span class="chi-tiet-sale">-30%</span>
+                </div>
+
+                <hr>
+
+                <div class="chon-thuoc-tinh">
+                    <label for="chiTietMau">Màu sắc:</label>
+                    <select id="chiTietMau"></select>
+                </div>
+
+                <div class="chon-thuoc-tinh">
+                    <label for="chiTietSize">Kích thước:</label>
+                    <select id="chiTietSize"></select>
+                </div>
+
+                <div class="chon-thuoc-tinh">
+                    <label for="chiTietSoLuong">Số lượng:</label>
+                    <div class="bo-dem-so-luong">
+                        <button type="button" onclick="doiSoLuongChiTiet(-1)">−</button>
+                        <input id="chiTietSoLuong" type="number" min="1" max="20" value="1">
+                        <button type="button" onclick="doiSoLuongChiTiet(1)">+</button>
+                    </div>
+                </div>
+
+                <button type="button" class="nut-mua-chi-tiet" onclick="themTuTrangChiTiet()">
+                    THÊM VÀO GIỎ HÀNG
+                </button>
+
+                <button type="button" class="nut-mua-chi-tiet nut-mua-ngay" onclick="muaNgayTrangChiTiet()">
+                    MUA NGAY
+                </button>
+
+                <div class="mo-ta-chi-tiet">
+                    <details open>
+                        <summary>Thông tin chi tiết sản phẩm</summary>
+                        <div id="chiTietMoTa"></div>
+                    </details>
+
+                    <details>
+                        <summary>Chính sách bảo hành</summary>
+                        <p>DAT BOUTIQUE hỗ trợ khách hàng kiểm tra sản phẩm khi nhận hàng. Vui lòng liên hệ cửa hàng nếu sản phẩm có vấn đề.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <h2>DAT BOUTIQUE</h2>
+        <p>YOUR STYLE · YOUR IDENTITY</p>
+        <p>Hotline: 0366 258 527</p>
+        <p>© 2026 DAT BOUTIQUE. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
