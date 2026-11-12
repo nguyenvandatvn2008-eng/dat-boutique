@@ -138,7 +138,7 @@ body {
     overflow: hidden;
     display: block;
     background-color: #080808;
-    background-image: url("banner-adidas.jpg");
+    background-image: url("banner-adidas.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -650,4 +650,36 @@ footer p {
     .san-pham-gio {
         align-items: flex-start;
     }
+}
+/* ==============================
+   BANNER ADIDAS - DAT BOUTIQUE
+============================== */
+
+.banner {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+    height: auto;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+
+    background-color: #111;
+    background-image: url("./banner-adidas.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* Ẩn nội dung banner cũ */
+.banner > *:not(.banner-link) {
+    display: none;
+}
+
+/* Cho phép nhấn vào banner để xem sản phẩm */
+.banner-link {
+    position: absolute;
+    inset: 0;
+    display: block;
+    z-index: 5;
 }
