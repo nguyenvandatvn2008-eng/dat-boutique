@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +19,7 @@
 
 <body>
 
+    <!-- HEADER -->
     <header class="dau-trang">
         <div class="logo-khung">
             <div class="logo-db">DB</div>
@@ -29,6 +31,7 @@
         </div>
     </header>
 
+    <!-- MENU -->
     <nav class="thanh-menu" aria-label="Menu chính">
         <a href="#trang-chu">TRANG CHỦ</a>
         <a href="#san-pham">SẢN PHẨM</a>
@@ -38,10 +41,12 @@
 
     <main id="trang-chu">
 
+        <!-- BANNER -->
         <section class="banner banner-moi" aria-label="Bộ sưu tập thể thao Adidas">
             <a href="#san-pham" class="banner-link" aria-label="Khám phá sản phẩm"></a>
         </section>
 
+        <!-- DANH SACH SAN PHAM -->
         <section class="khu-san-pham" id="san-pham">
 
             <div class="tieu-de-khu">
@@ -50,6 +55,7 @@
                 <span></span>
             </div>
 
+            <!-- TIM KIEM -->
             <input
                 type="search"
                 id="timKiem"
@@ -58,21 +64,32 @@
                 aria-label="Tìm kiếm sản phẩm"
             >
 
+            <!-- LOC DANH MUC -->
             <div class="bo-loc" aria-label="Lọc danh mục">
-                <button type="button" class="loc active" data-category="all">TẤT CẢ</button>
-                <button type="button" class="loc" data-category="ao">ĐỒ BỘ</button>
-                <button type="button" class="loc" data-category="quan">QUẦN</button>
+                <button type="button" class="loc active" data-category="all">
+                    TẤT CẢ
+                </button>
+
+                <button type="button" class="loc" data-category="ao">
+                    ĐỒ BỘ
+                </button>
+
+                <button type="button" class="loc" data-category="quan">
+                    QUẦN
+                </button>
             </div>
 
+            <!-- CAC SAN PHAM -->
             <div class="danh-sach">
 
+                <!-- SAN PHAM 1 -->
                 <article class="san-pham" data-category="ao">
 
                     <div class="khung-anh">
                         <span class="nhan-moi">NEW COLLECTION</span>
 
                         <img
-                            id="anhChinh"
+                            class="anh-chinh"
                             src="./dobo1.jpg"
                             alt="Bộ thể thao 3 sọc"
                             onerror="this.onerror=null;this.src='https://placehold.co/600x700/e5e5e5/222?text=DAT+BOUTIQUE';"
@@ -81,18 +98,41 @@
 
                     <div class="anh-nho" aria-label="Ảnh chi tiết sản phẩm">
 
-                        <img src="./dobo1.jpg" alt="Góc nhìn 1 bộ thể thao" onclick="doiAnh(this)" onerror="this.style.display='none'">
+                        <img
+                            src="./dobo1.jpg"
+                            alt="Góc nhìn 1 bộ thể thao"
+                            onclick="doiAnh(this)"
+                            onerror="this.style.display='none'"
+                        >
 
-                        <img src="./dobo2.jpg" alt="Góc nhìn 2 bộ thể thao" onclick="doiAnh(this)" onerror="this.style.display='none'">
+                        <img
+                            src="./dobo2.jpg"
+                            alt="Góc nhìn 2 bộ thể thao"
+                            onclick="doiAnh(this)"
+                            onerror="this.style.display='none'"
+                        >
 
-                        <img src="./dobo3.jpg" alt="Góc nhìn 3 bộ thể thao" onclick="doiAnh(this)" onerror="this.style.display='none'">
+                        <img
+                            src="./dobo3.jpg"
+                            alt="Góc nhìn 3 bộ thể thao"
+                            onclick="doiAnh(this)"
+                            onerror="this.style.display='none'"
+                        >
 
-                        <img src="./dobo4.jpg" alt="Góc nhìn 4 bộ thể thao" onclick="doiAnh(this)" onerror="this.style.display='none'">
+                        <img
+                            src="./dobo4.jpg"
+                            alt="Góc nhìn 4 bộ thể thao"
+                            onclick="doiAnh(this)"
+                            onerror="this.style.display='none'"
+                        >
 
                     </div>
 
                     <div class="thong-tin-san-pham">
-                        <p class="loai-san-pham">SPORTWEAR · ADIDAS STYLE</p>
+
+                        <p class="loai-san-pham">
+                            SPORTWEAR · ADIDAS STYLE
+                        </p>
 
                         <h3>Bộ thể thao 3 sọc</h3>
 
@@ -104,18 +144,88 @@
                         >
                             THÊM VÀO GIỎ HÀNG
                         </button>
+
+                    </div>
+
+                </article>
+
+                <!-- SAN PHAM 2 -->
+                <article class="san-pham" data-category="ao">
+
+                    <div class="khung-anh">
+                        <span class="nhan-moi">NEW</span>
+
+                        <img
+                            class="anh-chinh"
+                            src="./dobo1.1.jpg"
+                            alt="Bộ Adidas đen sọc trắng"
+                            onerror="this.onerror=null;this.src='https://placehold.co/600x700/e5e5e5/222?text=ADIDAS+BLACK';"
+                        >
+                    </div>
+
+                    <div class="anh-nho" aria-label="Ảnh chi tiết bộ Adidas đen">
+
+                        <img
+                            src="./dobo1.1.jpg"
+                            alt="Ảnh tổng thể bộ Adidas"
+                            onclick="doiAnh(this)"
+                            onerror="this.style.display='none'"
+                        >
+
+                        <img
+                            src="./dobo1.2.jpg"
+                            alt="Áo Adidas mặt trước"
+                            onclick="doiAnh(this)"
+                            onerror="this.style.display='none'"
+                        >
+
+                        <img
+                            src="./dobo1.3.jpg"
+                            alt="Áo Adidas mặt sau"
+                            onclick="doiAnh(this)"
+                            onerror="this.style.display='none'"
+                        >
+
+                        <img
+                            src="./dobo1.4.jpg"
+                            alt="Quần Adidas"
+                            onclick="doiAnh(this)"
+                            onerror="this.style.display='none'"
+                        >
+
+                    </div>
+
+                    <div class="thong-tin-san-pham">
+
+                        <p class="loai-san-pham">
+                            ADIDAS COLLECTION
+                        </p>
+
+                        <h3>Bộ Adidas đen sọc trắng</h3>
+
+                        <p class="gia-san-pham">700.000đ</p>
+
+                        <button
+                            type="button"
+                            onclick="themGioHang('Bộ Adidas đen sọc trắng', 700000, 'dobo1.1.jpg')"
+                        >
+                            THÊM VÀO GIỎ HÀNG
+                        </button>
+
                     </div>
 
                 </article>
 
             </div>
 
+            <!-- THONG BAO TIM KIEM -->
             <p id="khongTimThay" class="empty-search" hidden>
                 Không tìm thấy sản phẩm phù hợp.
             </p>
 
         </section>
 
+        <!-- GIO HANG -->
         <section class="khu-gio-hang" id="giohang">
 
             <div class="tieu-de-khu">
@@ -128,7 +238,8 @@
 
                 <div id="danhSachGio">
                     <p style="text-align:center;padding:25px;">
-                        Giỏ hàng của bạn đang trống. Hãy khám phá sản phẩm nhé!
+                        Giỏ hàng của bạn đang trống.
+                        Hãy khám phá sản phẩm nhé!
                     </p>
                 </div>
 
@@ -150,6 +261,7 @@
 
         </section>
 
+        <!-- DAT HANG -->
         <section class="khu-dat-hang" id="dat-hang">
 
             <div class="tieu-de-khu">
@@ -158,7 +270,10 @@
                 <span></span>
             </div>
 
-            <form class="khung-dat-hang" onsubmit="event.preventDefault(); datHang();">
+            <form
+                class="khung-dat-hang"
+                onsubmit="event.preventDefault(); datHang();"
+            >
 
                 <label for="hoTen">Họ và tên</label>
 
@@ -193,15 +308,27 @@
                     required
                 ></textarea>
 
-                <p class="tieu-de-thanh-toan">Phương thức thanh toán</p>
+                <p class="tieu-de-thanh-toan">
+                    Phương thức thanh toán
+                </p>
 
                 <label class="lua-chon-thanh-toan">
-                    <input type="radio" name="thanhToan" value="QR" required>
+                    <input
+                        type="radio"
+                        name="thanhToan"
+                        value="QR"
+                        required
+                    >
                     Chuyển khoản Vietcombank bằng mã QR
                 </label>
 
                 <label class="lua-chon-thanh-toan">
-                    <input type="radio" name="thanhToan" value="COD" required>
+                    <input
+                        type="radio"
+                        name="thanhToan"
+                        value="COD"
+                        required
+                    >
                     Thanh toán khi nhận hàng (COD)
                 </label>
 
@@ -217,6 +344,7 @@
 
     </main>
 
+    <!-- CHAN TRANG -->
     <footer>
 
         <h2>DAT BOUTIQUE</h2>
