@@ -1,236 +1,101 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta name="description" content="Chi tiết sản phẩm DAT BOUTIQUE">
-
     <title>Chi tiết sản phẩm | DAT BOUTIQUE</title>
-
     <link rel="stylesheet" href="./style.css">
-
     <script src="./script.js" defer></script>
 </head>
-
 <body>
-
-    <!-- HEADER -->
     <header class="dau-trang">
-        <div class="logo">
-            <a href="./index.html" class="logo">
-                <span class="logo-db">DB</span>
-
-                <div class="logo-text">
-                    <h1>DAT BOUTIQUE</h1>
-                    <p>PREMIUM SPORTSWEAR</p>
-                </div>
-            </a>
-        </div>
+        <a href="./index.html" class="logo-khung" aria-label="DAT BOUTIQUE - Trang chủ">
+            <span class="logo-db">DB</span>
+            <span class="logo-chu">
+                <strong>DAT <span>BOUTIQUE</span></strong>
+                <small>PREMIUM SPORTSWEAR</small>
+            </span>
+        </a>
     </header>
 
-    <!-- MENU -->
-    <nav class="thanh-menu">
+    <nav class="thanh-menu" aria-label="Menu chính">
         <a href="./index.html">TRANG CHỦ</a>
         <a href="./index.html#san-pham">SẢN PHẨM</a>
         <a href="./index.html#giohang">GIỎ HÀNG</a>
-        <a href="./index.html#dat-hang">ĐẶT HÀNG</a>
     </nav>
 
-    <!-- CHI TIẾT SẢN PHẨM -->
     <main class="trang-chi-tiet">
-
         <div class="duong-dan">
             <a href="./index.html">Trang chủ</a>
-            <span> / </span>
+            <span>/</span>
             <span>Chi tiết sản phẩm</span>
         </div>
 
         <section id="trangChiTietSanPham" class="chi-tiet-page">
-
-            <!-- HÌNH ẢNH -->
             <div class="chi-tiet-gallery">
-
                 <div class="chi-tiet-anh-chinh">
-                    <img
-                        id="chiTietAnhLon"
-                        src=""
-                        alt="Ảnh sản phẩm"
-                    >
+                    <img id="chiTietAnhLon" src="" alt="Ảnh sản phẩm">
                 </div>
-
-                <div
-                    id="chiTietAnhNho"
-                    class="chi-tiet-anh-nho">
-                </div>
-
+                <div id="chiTietAnhNho" class="chi-tiet-anh-nho"></div>
             </div>
 
-            <!-- THÔNG TIN -->
             <div class="chi-tiet-thong-tin">
-
-                <p class="chi-tiet-nhan">
-                    DAT BOUTIQUE · PREMIUM COLLECTION
-                </p>
-
-                <h1 id="chiTietTen">
-                    Đang tải sản phẩm...
-                </h1>
-
-                <p class="ma-san-pham">
-                    Mã sản phẩm:
-                    <strong id="chiTietMa"></strong>
-                </p>
+                <p class="chi-tiet-nhan">DAT BOUTIQUE · PREMIUM COLLECTION</p>
+                <h1 id="chiTietTen">Đang tải sản phẩm...</h1>
+                <p class="ma-san-pham">Mã sản phẩm: <strong id="chiTietMa"></strong></p>
 
                 <div class="chi-tiet-gia">
-
                     <del id="chiTietGiaCu"></del>
-
                     <strong id="chiTietGiaMoi"></strong>
-
                     <span class="chi-tiet-sale">-30%</span>
-
                 </div>
 
                 <hr>
 
-                <!-- CHỌN MÀU -->
-                <div class="chon-thuoc-tinh">
-
-                    <label for="chiTietMau">
-                        MÀU SẮC
-                    </label>
-
+                <div class="chon-thuoc-tinh" id="khungChonMau">
+                    <label for="chiTietMau">MÀU SẮC</label>
                     <select id="chiTietMau"></select>
-
                 </div>
 
-                <!-- CHỌN SIZE -->
-                <div class="chon-thuoc-tinh">
-
-                    <label for="chiTietSize">
-                        KÍCH THƯỚC
-                    </label>
-
+                <div class="chon-thuoc-tinh" id="khungChonSize">
+                    <label for="chiTietSize">KÍCH THƯỚC</label>
                     <select id="chiTietSize"></select>
-
                 </div>
 
-                <!-- SỐ LƯỢNG -->
                 <div class="chon-thuoc-tinh">
-
-                    <label>
-                        SỐ LƯỢNG
-                    </label>
-
+                    <label for="chiTietSoLuong">SỐ LƯỢNG</label>
                     <div class="bo-dem-so-luong">
-
-                        <button
-                            type="button"
-                            onclick="doiSoLuongChiTiet(-1)">
-                            −
-                        </button>
-
-                        <input
-                            id="chiTietSoLuong"
-                            type="number"
-                            min="1"
-                            max="20"
-                            value="1"
-                        >
-
-                        <button
-                            type="button"
-                            onclick="doiSoLuongChiTiet(1)">
-                            +
-                        </button>
-
+                        <button type="button" onclick="doiSoLuongChiTiet(-1)" aria-label="Giảm số lượng">−</button>
+                        <input id="chiTietSoLuong" type="number" min="1" max="20" value="1" inputmode="numeric">
+                        <button type="button" onclick="doiSoLuongChiTiet(1)" aria-label="Tăng số lượng">+</button>
                     </div>
-
                 </div>
 
-                <!-- NÚT MUA -->
-                <button
-                    type="button"
-                    class="nut-mua-chi-tiet"
-                    onclick="themTuTrangChiTiet()">
+                <button type="button" class="nut-mua-chi-tiet" onclick="themTuTrangChiTiet()">THÊM VÀO GIỎ HÀNG</button>
+                <button type="button" class="nut-mua-chi-tiet nut-mua-ngay" onclick="muaNgayTrangChiTiet()">MUA NGAY</button>
 
-                    THÊM VÀO GIỎ HÀNG
-
-                </button>
-
-                <button
-                    type="button"
-                    class="nut-mua-chi-tiet nut-mua-ngay"
-                    onclick="muaNgayTrangChiTiet()">
-
-                    MUA NGAY
-
-                </button>
-
-                <!-- MÔ TẢ -->
                 <div class="mo-ta-chi-tiet">
-
                     <details open>
-
-                        <summary>
-                            THÔNG TIN CHI TIẾT SẢN PHẨM
-                        </summary>
-
+                        <summary>THÔNG TIN CHI TIẾT SẢN PHẨM</summary>
                         <div id="chiTietMoTa"></div>
-
                     </details>
-
                     <details>
-
-                        <summary>
-                            CHÍNH SÁCH BẢO HÀNH
-                        </summary>
-
-                        <p>
-                            DAT BOUTIQUE hỗ trợ khách hàng kiểm tra
-                            sản phẩm khi nhận hàng. Vui lòng liên hệ
-                            cửa hàng nếu sản phẩm có vấn đề.
-                        </p>
-
+                        <summary>CHÍNH SÁCH BẢO HÀNH</summary>
+                        <p>DAT BOUTIQUE hỗ trợ khách hàng kiểm tra sản phẩm khi nhận hàng. Vui lòng liên hệ cửa hàng nếu sản phẩm có vấn đề.</p>
                     </details>
-
                 </div>
-
             </div>
-
         </section>
 
+        <p id="loiChiTiet" class="loi-chi-tiet" hidden></p>
     </main>
 
-    <!-- FOOTER -->
     <footer class="chan-trang">
-
-        <div class="chan-trang-noi-dung">
-
-            <div>
-                <h2>DAT BOUTIQUE</h2>
-                <p>PREMIUM SPORTSWEAR</p>
-            </div>
-
-            <div>
-                <h3>THÔNG TIN</h3>
-                <p>YOUR STYLE · YOUR IDENTITY</p>
-            </div>
-
-            <div>
-                <h3>LIÊN HỆ</h3>
-                <p>Hotline: 0366 258 527</p>
-            </div>
-
-        </div>
-
-        <div class="ban-quyen">
-            © 2026 DAT BOUTIQUE. ALL RIGHTS RESERVED.
-        </div>
-
+        <h2>DAT BOUTIQUE</h2>
+        <p>PREMIUM SPORTSWEAR</p>
+        <p>Hotline: 0366 258 527</p>
+        <p>© 2026 DAT BOUTIQUE. ALL RIGHTS RESERVED.</p>
     </footer>
-
 </body>
 </html>
