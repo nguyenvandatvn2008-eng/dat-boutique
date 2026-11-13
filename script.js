@@ -1,12 +1,9 @@
 // =============================================
 // DAT BOUTIQUE - SCRIPT.JS
-// PHIEN BAN HOAN CHINH
+// PHIEN BAN DA SUA LOI
 // =============================================
 
-
-// =============================================
 // 1. KHOI TAO GIO HANG VA LUU DU LIEU
-// =============================================
 
 let gioHang = [];
 
@@ -32,6 +29,7 @@ function taiGioHang() {
                 mau: String(sp.mau || ""),
                 size: String(sp.size || "")
             }));
+
     } catch (error) {
         console.error("Lỗi tải giỏ hàng:", error);
         return [];
@@ -39,7 +37,6 @@ function taiGioHang() {
 }
 
 gioHang = taiGioHang();
-
 
 function luuGioHang() {
     try {
@@ -49,19 +46,15 @@ function luuGioHang() {
         );
 
         return true;
+
     } catch (error) {
         console.error("Lỗi lưu giỏ hàng:", error);
-
         alert("Không thể lưu giỏ hàng. Hãy kiểm tra bộ nhớ trình duyệt.");
-
         return false;
     }
 }
 
-
-// =============================================
 // 2. KHOI TAO EMAILJS
-// =============================================
 
 if (typeof emailjs !== "undefined") {
     emailjs.init({
@@ -69,31 +62,24 @@ if (typeof emailjs !== "undefined") {
     });
 }
 
-
-// =============================================
 // 3. CAC HAM HO TRO
-// =============================================
 
 function layPhanTu(...ids) {
     for (const id of ids) {
         const element = document.getElementById(id);
-
         if (element) return element;
     }
 
     return null;
 }
 
-
 function dinhDangTien(gia) {
     return Number(gia || 0).toLocaleString("vi-VN") + "đ";
 }
 
-
 function tinhGiaSale(giaGoc) {
     return Math.round(Number(giaGoc) * 0.7);
 }
-
 
 function lamSachHTML(noiDung) {
     return String(noiDung ?? "").replace(/[&<>"']/g, function (kyTu) {
@@ -107,7 +93,6 @@ function lamSachHTML(noiDung) {
     });
 }
 
-
 function anThongBaoCu() {
     const thongBao = layPhanTu("thongBao", "thong-bao");
 
@@ -116,16 +101,12 @@ function anThongBaoCu() {
     }
 }
 
-
-// =============================================
-// 4. CHUYEN ANH SAN PHAM
-// =============================================
+// 4. CHUYEN ANH SAN PHAM TREN TRANG CHU
 
 function doiAnh(anhNho) {
     if (!anhNho) return;
 
     const khungAnh = anhNho.closest(".san-pham");
-
     if (!khungAnh) return;
 
     const anhChinh = khungAnh.querySelector(".anh-chinh");
@@ -141,10 +122,7 @@ function doiAnh(anhNho) {
     anhNho.classList.add("anh-dang-chon");
 }
 
-
-// =============================================
 // 5. THEM SAN PHAM VAO GIO HANG
-// =============================================
 
 function themGioHang(
     ten,
@@ -154,13 +132,12 @@ function themGioHang(
     mau = "",
     size = ""
 ) {
-
     giaGoc = Number(giaGoc);
     soLuong = Math.floor(Number(soLuong));
 
     if (!ten || !Number.isFinite(giaGoc) || giaGoc <= 0) {
         alert("Thông tin sản phẩm không hợp lệ!");
-        return;
+        return false;
     }
 
     if (!Number.isFinite(soLuong) || soLuong < 1) {
@@ -169,7 +146,7 @@ function themGioHang(
 
     if (soLuong > 20) {
         alert("Mỗi lần chỉ được thêm tối đa 20 sản phẩm!");
-        return;
+        return false;
     }
 
     const giaSale = tinhGiaSale(giaGoc);
@@ -181,16 +158,14 @@ function themGioHang(
     });
 
     if (sanPhamCu) {
-
         if (sanPhamCu.soLuong + soLuong > 20) {
             alert("Số lượng sản phẩm này không được vượt quá 20!");
-            return;
+            return false;
         }
 
         sanPhamCu.soLuong += soLuong;
 
     } else {
-
         gioHang.push({
             ten: String(ten),
             gia: giaSale,
@@ -203,19 +178,16 @@ function themGioHang(
     }
 
     luuGioHang();
-
     hienThiGioHang();
 
     alert("Đã thêm " + ten + " vào giỏ hàng!");
+
+    return true;
 }
 
-
-// =============================================
 // 6. HIEN THI GIO HANG
-// =============================================
 
 function hienThiGioHang() {
-
     const danhSach = layPhanTu("danhSachGio", "danh-sach-gio");
 
     const soLuongElement = layPhanTu(
@@ -237,21 +209,17 @@ function hienThiGioHang() {
         tongTien += sp.gia * sp.soLuong;
     });
 
-    // Cap nhat so luong
     if (soLuongElement) {
         soLuongElement.textContent = tongSoLuong;
     }
 
-    // Cap nhat tong tien o khung tom tat
     if (tongTienElement) {
         tongTienElement.textContent = dinhDangTien(tongTien);
     }
 
     if (!danhSach) return;
 
-    // Neu gio hang trong
     if (gioHang.length === 0) {
-
         danhSach.innerHTML = `
             <p class="gio-hang-trong">
                 Giỏ hàng của bạn đang trống.
@@ -261,9 +229,7 @@ function hienThiGioHang() {
         return;
     }
 
-    // Hien thi tung san pham
     danhSach.innerHTML = gioHang.map(function (sp, index) {
-
         const ten = lamSachHTML(sp.ten);
         const anh = lamSachHTML(sp.anh);
         const mau = lamSachHTML(sp.mau);
@@ -281,7 +247,6 @@ function hienThiGioHang() {
                     <h4>${ten}</h4>
 
                     ${mau ? `<p>Màu: ${mau}</p>` : ""}
-
                     ${size ? `<p>Size: ${size}</p>` : ""}
 
                     <p>
@@ -323,17 +288,12 @@ function hienThiGioHang() {
                 </div>
             </div>
         `;
-
     }).join("");
 }
 
-
-// =============================================
 // 7. TANG GIAM SO LUONG TRONG GIO
-// =============================================
 
 function thayDoiSoLuong(index, thayDoi) {
-
     const sp = gioHang[index];
 
     if (!sp) return;
@@ -341,48 +301,33 @@ function thayDoiSoLuong(index, thayDoi) {
     const soLuongMoi = sp.soLuong + Number(thayDoi);
 
     if (soLuongMoi <= 0) {
-
         gioHang.splice(index, 1);
 
     } else if (soLuongMoi > 20) {
-
         alert("Số lượng tối đa là 20!");
-
         return;
 
     } else {
-
         sp.soLuong = soLuongMoi;
     }
 
     luuGioHang();
-
     hienThiGioHang();
 }
 
-
-// =============================================
 // 8. XOA SAN PHAM
-// =============================================
 
 function xoaSanPham(index) {
-
     if (!gioHang[index]) return;
 
     gioHang.splice(index, 1);
 
     luuGioHang();
-
     hienThiGioHang();
 }
-
-
-// =============================================
 // 9. TIM KIEM VA LOC SAN PHAM
-// =============================================
 
 function locSanPham() {
-
     const oTimKiem = layPhanTu("timKiem", "tim-kiem");
 
     const tuKhoa = oTimKiem
@@ -396,55 +341,39 @@ function locSanPham() {
         : "all";
 
     document.querySelectorAll(".danh-sach .san-pham").forEach(function (sp) {
-
         const ten = sp.textContent.toLowerCase();
-
         const loai = sp.dataset.category || "all";
 
         const dungTuKhoa = ten.includes(tuKhoa);
-
-        const dungDanhMuc =
-            danhMuc === "all" || loai === danhMuc;
+        const dungDanhMuc = danhMuc === "all" || loai === danhMuc;
 
         sp.style.display =
             dungTuKhoa && dungDanhMuc ? "" : "none";
     });
 }
 
-
-// =============================================
 // 10. AP DUNG GIAM GIA 30%
-// =============================================
 
 function apDungSale() {
-
     document.querySelectorAll(".danh-sach .san-pham").forEach(function (sp) {
-
         const giaGoc = Number(sp.dataset.giaGoc);
 
         if (!Number.isFinite(giaGoc) || giaGoc <= 0) return;
 
         const giaSale = tinhGiaSale(giaGoc);
-
         const khungGia = sp.querySelector(".gia-san-pham");
 
         if (khungGia) {
-
             khungGia.innerHTML = `
                 <del>${dinhDangTien(giaGoc)}</del>
-
                 <strong>${dinhDangTien(giaSale)}</strong>
-
                 <span class="nhan-giam-gia">-30%</span>
             `;
         }
     });
 }
 
-
-// =============================================
 // 11. DU LIEU CHI TIET SAN PHAM
-// =============================================
 
 const duLieuSanPham = {
 
@@ -503,25 +432,18 @@ const duLieuSanPham = {
 
 };
 
-
-// =============================================
-// 12. KHOI TAO TRANG CHI TIET
-// =============================================
+// 12. KHOI TAO TRANG CHI TIET SAN PHAM
 
 function khoiTaoTrangChiTiet() {
-
     const khungChiTiet = layPhanTu("trangChiTietSanPham");
 
     if (!khungChiTiet) return;
 
     const thamSo = new URLSearchParams(window.location.search);
-
     const maSanPham = thamSo.get("id");
-
     const sp = duLieuSanPham[maSanPham];
 
     if (!sp) {
-
         khungChiTiet.innerHTML = `
             <h2>Không tìm thấy sản phẩm.</h2>
             <a href="./index.html">Quay lại trang chủ</a>
@@ -545,214 +467,149 @@ function khoiTaoTrangChiTiet() {
 
     if (ma) ma.textContent = sp.ma;
 
-    if (giaCu) giaCu.textContent = dinhDangTien(sp.gia);
+    if (giaCu) {
+        giaCu.textContent = dinhDangTien(sp.gia);
+    }
 
     if (giaMoi) {
         giaMoi.textContent = dinhDangTien(tinhGiaSale(sp.gia));
     }
 
-    if (moTa) moTa.textContent = sp.moTa;
+    if (moTa) {
+        moTa.textContent = sp.moTa;
+    }
 
-    if (soLuong) soLuong.value = 1;
+    if (soLuong) {
+        soLuong.value = 1;
+    }
 
     if (mauSelect) {
-
         mauSelect.innerHTML = sp.mau.map(function (mau) {
-
             return `
                 <option value="${lamSachHTML(mau)}">
                     ${lamSachHTML(mau)}
                 </option>
             `;
-
         }).join("");
     }
 
     if (sizeSelect) {
-
         sizeSelect.innerHTML = sp.size.map(function (size) {
-
             return `
                 <option value="${lamSachHTML(size)}">
                     ${lamSachHTML(size)}
                 </option>
             `;
-
         }).join("");
     }
 
-    if (anhLon && sp.anh.length > 0) {
+    if (anhLon && sp.anh.length) {
         anhLon.src = sp.anh[0];
         anhLon.alt = sp.ten;
     }
 
     if (anhNho) {
-
         anhNho.innerHTML = sp.anh.map(function (anh, index) {
-
             return `
                 <img
                     src="${lamSachHTML(anh)}"
                     alt="${lamSachHTML(sp.ten)}"
                     class="${index === 0 ? "anh-dang-chon" : ""}"
-                    onclick="chonAnhChiTiet(this)"
+                    onclick="chonAnhChiTiet('${lamSachHTML(anh)}', this)"
                 >
             `;
-
         }).join("");
     }
 
     khungChiTiet.dataset.productId = maSanPham;
 }
 
-
-// =============================================
-// 13. CHON ANH TRANG CHI TIET
-// =============================================
-
-function chonAnhChiTiet(anhNho) {
-
+function chonAnhChiTiet(duongDan, anhNho) {
     const anhLon = layPhanTu("chiTietAnhLon");
 
-    if (!anhLon || !anhNho) return;
+    if (anhLon) {
+        anhLon.src = duongDan;
+    }
 
-    anhLon.src = anhNho.src;
-
-    document.querySelectorAll("#chiTietAnhNho img").forEach(function (anh) {
+    document.querySelectorAll(".chi-tiet-anh-nho img").forEach(function (anh) {
         anh.classList.remove("anh-dang-chon");
     });
 
-    anhNho.classList.add("anh-dang-chon");
+    if (anhNho) {
+        anhNho.classList.add("anh-dang-chon");
+    }
 }
 
-
-// =============================================
-// 14. TANG GIAM SO LUONG TRANG CHI TIET
-// =============================================
-
 function doiSoLuongChiTiet(thayDoi) {
-
     const oSoLuong = layPhanTu("chiTietSoLuong");
 
     if (!oSoLuong) return;
 
-    let soLuong = Math.floor(Number(oSoLuong.value));
-
-    if (!Number.isFinite(soLuong) || soLuong < 1) {
-        soLuong = 1;
-    }
+    let soLuong = Number(oSoLuong.value) || 1;
 
     soLuong += Number(thayDoi);
 
-    soLuong = Math.max(1, Math.min(20, soLuong));
+    if (soLuong < 1) soLuong = 1;
+    if (soLuong > 20) soLuong = 20;
 
     oSoLuong.value = soLuong;
 }
 
+function themTuTrangChiTiet() {
+    const khung = layPhanTu("trangChiTietSanPham");
 
-// =============================================
-// 15. LAY THONG TIN TRANG CHI TIET
-// =============================================
+    if (!khung) return false;
 
-function layThongTinChiTiet() {
-
-    const khungChiTiet = layPhanTu("trangChiTietSanPham");
-
-    if (!khungChiTiet) return null;
-
-    const maSanPham = khungChiTiet.dataset.productId;
-
+    const maSanPham = khung.dataset.productId;
     const sp = duLieuSanPham[maSanPham];
 
-    if (!sp) return null;
+    if (!sp) return false;
 
-    const oSoLuong = layPhanTu("chiTietSoLuong");
+    const mau = layPhanTu("chiTietMau");
+    const size = layPhanTu("chiTietSize");
+    const soLuong = layPhanTu("chiTietSoLuong");
+    const anh = layPhanTu("chiTietAnhLon");
 
-    let soLuong = Math.floor(Number(oSoLuong?.value));
-
-    if (!Number.isFinite(soLuong) || soLuong < 1) {
-        soLuong = 1;
-    }
-
-    if (soLuong > 20) {
-        alert("Số lượng tối đa là 20!");
-        return null;
-    }
-
-    return {
-        sp: sp,
-        mau: layPhanTu("chiTietMau")?.value || "",
-        size: layPhanTu("chiTietSize")?.value || "",
-        soLuong: soLuong
-    };
-}
-
-
-// =============================================
-// 16. THEM HANG TU TRANG CHI TIET
-// =============================================
-
-function themTuTrangChiTiet() {
-
-    const duLieu = layThongTinChiTiet();
-
-    if (!duLieu) return;
-
-    themGioHang(
-        duLieu.sp.ten,
-        duLieu.sp.gia,
-        duLieu.sp.anh[0],
-        duLieu.soLuong,
-        duLieu.mau,
-        duLieu.size
+    return themGioHang(
+        sp.ten,
+        sp.gia,
+        anh ? anh.getAttribute("src") : sp.anh[0],
+        soLuong ? soLuong.value : 1,
+        mau ? mau.value : "",
+        size ? size.value : ""
     );
 }
-
-
-// =============================================
-// 17. MUA NGAY TU TRANG CHI TIET
-// =============================================
 
 function muaNgayTrangChiTiet() {
+    const daThem = themTuTrangChiTiet();
 
-    const duLieu = layThongTinChiTiet();
+    if (daThem) {
+        window.location.href = "./index.html#gio-hang";
+    }
+}// 13. HIEN THI / AN FORM DAT HANG
 
-    if (!duLieu) return;
-
-    themGioHang(
-        duLieu.sp.ten,
-        duLieu.sp.gia,
-        duLieu.sp.anh[0],
-        duLieu.soLuong,
-        duLieu.mau,
-        duLieu.size
-    );
-
-    window.location.href = "./index.html#giohang";
+function layKhuVucDatHang() {
+    return document.getElementById("dat-hang") ||
+        document.getElementById("formDatHang");
 }
 
-
-// =============================================
-// 18. HIEN THI FORM DAT HANG
-// =============================================
-
 function hienThiDatHang() {
-
     if (gioHang.length === 0) {
         alert("Giỏ hàng của bạn đang trống!");
         return false;
     }
 
-    const khuVucDatHang = layPhanTu("dat-hang");
+    const form = layKhuVucDatHang();
 
-    if (!khuVucDatHang) {
+    if (!form) {
         alert("Không tìm thấy khu vực đặt hàng!");
         return false;
     }
 
-    khuVucDatHang.style.display = "block";
+    form.hidden = false;
+    form.style.display = "block";
 
-    khuVucDatHang.scrollIntoView({
+    form.scrollIntoView({
         behavior: "smooth",
         block: "start"
     });
@@ -760,232 +617,185 @@ function hienThiDatHang() {
     return false;
 }
 
-
-// =============================================
-// 19. AN FORM DAT HANG
-// =============================================
-
 function anFormDatHang() {
+    const form = layKhuVucDatHang();
 
-    const khuVucDatHang = layPhanTu("dat-hang");
+    if (!form) return;
 
-    if (khuVucDatHang) {
-        khuVucDatHang.style.display = "none";
+    form.hidden = true;
+    form.style.display = "none";
+}
+
+function dongFormDatHang() {
+    anFormDatHang();
+}
+
+function layPhuongThucThanhToan() {
+    const luaChon = document.querySelector(
+        'input[name="thanhToan"]:checked'
+    );
+
+    return luaChon
+        ? luaChon.value
+        : "Thanh toán khi nhận hàng";
+}
+
+function capNhatPhuongThucThanhToan() {
+    const phuongThuc = layPhuongThucThanhToan().toLowerCase();
+    const khungQR = layPhanTu("khungQR", "thanhToanQR");
+
+    if (khungQR) {
+        khungQR.style.display =
+            phuongThuc.includes("qr") ||
+            phuongThuc.includes("chuyển khoản")
+                ? "block"
+                : "none";
     }
 }
 
-
-// =============================================
-// 20. HIEN THI MA QR THANH TOAN
-// =============================================
-
-function hienThiThanhToan() {
-
-    const hinhThuc = layPhanTu(
-        "thanhToan",
-        "phuongThucThanhToan"
-    );
-
-    const khungQR = layPhanTu(
-        "khungQR",
-        "qrThanhToan"
-    );
-
-    if (!hinhThuc || !khungQR) return;
-
-    khungQR.style.display =
-        hinhThuc.value === "qr" ? "block" : "none";
-}
-
-
-// =============================================
-// 21. DAT HANG
-// =============================================
-
-async function datHang() {
-
-    if (gioHang.length === 0) {
-        alert("Giỏ hàng đang trống!");
-        return;
-    }
-
-    const tenKhach = layPhanTu(
-        "tenKhach",
-        "ten_khach",
-        "hoTen"
-    )?.value.trim() || "";
-
-    const soDienThoai = layPhanTu(
-        "soDienThoai",
-        "so_dien_thoai",
-        "dienThoai"
-    )?.value.trim() || "";
-
-    const diaChi = layPhanTu(
-        "diaChi",
-        "dia_chi"
-    )?.value.trim() || "";
-
-    const hinhThuc = layPhanTu(
-        "thanhToan",
-        "phuongThucThanhToan"
-    )?.value || "cod";
-
-    if (!tenKhach || !soDienThoai || !diaChi) {
-
-        alert(
-            "Vui lòng nhập đầy đủ họ tên, số điện thoại và địa chỉ!"
-        );
-
-        return;
-    }
-
-    if (!/^(0\d{9}|\+84\d{9})$/.test(soDienThoai)) {
-
-        alert("Số điện thoại không hợp lệ!");
-
-        return;
-    }
-
-    if (typeof emailjs === "undefined") {
-
-        alert("EmailJS chưa được tải. Hãy kiểm tra lại HTML!");
-
-        return;
-    }
-
-    const tongTien = gioHang.reduce(function (tong, sp) {
-        return tong + sp.gia * sp.soLuong;
-    }, 0);
-
-    const danhSachSanPham = gioHang.map(function (sp) {
-
+function taoNoiDungDonHang() {
+    return gioHang.map(function (sp, index) {
         return (
+            (index + 1) + ". " +
             sp.ten +
             (sp.mau ? " - Màu: " + sp.mau : "") +
             (sp.size ? " - Size: " + sp.size : "") +
             " - SL: " + sp.soLuong +
-            " - Giá: " + dinhDangTien(sp.gia)
+            " - " + dinhDangTien(sp.gia * sp.soLuong)
         );
-
     }).join("\n");
+}
 
-    const duLieuDonHang = {
+function tinhTongTien() {
+    return gioHang.reduce(function (tong, sp) {
+        return tong + sp.gia * sp.soLuong;
+    }, 0);
+}
+
+// 14. GUI DON HANG QUA EMAILJS
+
+function guiDonHang(event) {
+    if (event) event.preventDefault();
+
+    if (gioHang.length === 0) {
+        alert("Giỏ hàng đang trống. Vui lòng thêm sản phẩm trước!");
+        return;
+    }
+
+    const ten = layPhanTu("tenKhach", "ten-khach");
+    const dienThoai = layPhanTu("soDienThoai", "so-dien-thoai");
+    const diaChi = layPhanTu("diaChi", "dia-chi");
+    const email = layPhanTu("emailKhach", "email-khach");
+
+    if (!ten || !dienThoai || !diaChi) {
+        alert("Không tìm thấy đầy đủ ô thông tin đặt hàng.");
+        return;
+    }
+
+    const tenKhach = ten.value.trim();
+    const soDienThoai = dienThoai.value.trim();
+    const diaChiKhach = diaChi.value.trim();
+    const emailKhach = email ? email.value.trim() : "";
+
+    if (!tenKhach || !soDienThoai || !diaChiKhach) {
+        alert("Vui lòng nhập đầy đủ họ tên, số điện thoại và địa chỉ.");
+        return;
+    }
+
+    if (!/^(0\d{9}|\+84\d{9})$/.test(soDienThoai)) {
+        alert("Số điện thoại chưa đúng định dạng. Vui lòng kiểm tra lại.");
+        return;
+    }
+
+    if (
+        emailKhach &&
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailKhach)
+    ) {
+        alert("Email chưa đúng định dạng. Vui lòng kiểm tra lại.");
+        return;
+    }
+
+    if (typeof emailjs === "undefined") {
+        alert("Chức năng gửi đơn hàng chưa được kết nối. Vui lòng thử lại sau.");
+        return;
+    }
+
+    const thamSoEmail = {
         ten_khach: tenKhach,
         so_dien_thoai: soDienThoai,
-        dia_chi: diaChi,
-        san_pham: danhSachSanPham,
-        tong_tien: dinhDangTien(tongTien),
-        thanh_toan: hinhThuc === "qr"
-            ? "Chuyển khoản QR"
-            : "Thanh toán khi nhận hàng"
+        dia_chi: diaChiKhach,
+        email_khach: emailKhach,
+        san_pham: taoNoiDungDonHang(),
+        tong_tien: dinhDangTien(tinhTongTien()),
+        thanh_toan: layPhuongThucThanhToan()
     };
 
-    const nutDatHang = layPhanTu(
-        "nutDatHang",
-        "btnDatHang"
-    );
+    emailjs.send(
+        "service_338elep",
+        "template_0xjohd8",
+        thamSoEmail
+    ).then(function () {
+        alert("Đặt hàng thành công! Thông tin đơn hàng đã được gửi.");
 
-    const noiDungNutCu = nutDatHang
-        ? nutDatHang.textContent
-        : "";
-
-    try {
-
-        if (nutDatHang) {
-            nutDatHang.disabled = true;
-            nutDatHang.textContent = "ĐANG GỬI ĐƠN...";
-        }
-
-        await emailjs.send(
-            "service_338elep",
-            "template_0xjohd8",
-            duLieuDonHang
-        );
-
-        alert(
-            "Đặt hàng thành công! DAT BOUTIQUE đã nhận được thông tin đơn hàng."
-        );
-
-        // Xoa gio hang sau khi gui don thanh cong
         gioHang = [];
 
         luuGioHang();
-
         hienThiGioHang();
+        anFormDatHang();
 
-        // Lam moi form
-        const form = layPhanTu(
-            "formDatHang",
-            "form-dat-hang"
-        );
+        const form = layPhanTu("formDatHang", "dat-hang");
 
-        if (form) {
+        if (form && typeof form.reset === "function") {
             form.reset();
         }
 
-        // An QR
-        hienThiThanhToan();
+        capNhatPhuongThucThanhToan();
 
-        // An form dat hang
-        anFormDatHang();
-
-        // Cuon ve gio hang
-        const khuVucGioHang = layPhanTu("giohang");
-
-        if (khuVucGioHang) {
-            khuVucGioHang.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-        }
-
-    } catch (error) {
-
+    }).catch(function (error) {
         console.error("Lỗi gửi đơn hàng:", error);
 
-        alert(
-            "Chưa gửi được đơn hàng. Vui lòng kiểm tra kết nối hoặc thử lại sau."
-        );
-
-    } finally {
-
-        if (nutDatHang) {
-            nutDatHang.disabled = false;
-            nutDatHang.textContent = noiDungNutCu || "ĐẶT HÀNG";
-        }
-    }
+        alert("Không gửi được đơn hàng. Vui lòng kiểm tra lại kết nối và thử lại.");
+    });
 }
 
+// 15. CAC SU KIEN KHI TRANG WEB DUOC TAI
 
-// =============================================
-// 22. KHOI TAO CAC CHUC NANG KHI MO TRANG
-// =============================================
+// Dam bao form dat hang duoc an khi moi mo trang
+
+(function themCSSAnForm() {
+    if (document.getElementById("dat-boutique-hidden-style")) return;
+
+    const style = document.createElement("style");
+
+    style.id = "dat-boutique-hidden-style";
+
+    style.textContent = `
+        #dat-hang[hidden],
+        #formDatHang[hidden] {
+            display: none !important;
+        }
+    `;
+
+    document.head.appendChild(style);
+})();
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Hien thi gio hang
     hienThiGioHang();
-
-    // An form dat hang khi moi vao website
     anFormDatHang();
-
-    // Ap dung giam gia
     apDungSale();
 
     // Tim kiem san pham
-    const oTimKiem = layPhanTu(
-        "timKiem",
-        "tim-kiem"
-    );
+
+    const oTimKiem = layPhanTu("timKiem", "tim-kiem");
 
     if (oTimKiem) {
         oTimKiem.addEventListener("input", locSanPham);
     }
 
     // Loc danh muc
-    document.querySelectorAll(".loc").forEach(function (nut) {
 
+    document.querySelectorAll(".loc").forEach(function (nut) {
         nut.addEventListener("click", function () {
 
             document.querySelectorAll(".loc").forEach(function (item) {
@@ -998,75 +808,91 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Chuyen sang trang chi tiet
-    document.querySelectorAll(
-        ".danh-sach .san-pham"
-    ).forEach(function (sp) {
+    // Bam vao san pham de mo trang chi tiet
 
-        const id = sp.dataset.productId;
+    document.querySelectorAll(".danh-sach .san-pham").forEach(function (sp) {
 
         const anh = sp.querySelector(".anh-chinh");
-
         const ten = sp.querySelector("h3");
 
-        function moTrangRieng() {
+        let id = sp.dataset.productId || sp.dataset.product || "";
+
+        // Tu nhan dien theo ten san pham neu HTML chua co ma ID
+
+        if (!id) {
+            const noiDung = (ten ? ten.textContent : sp.textContent)
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
+
+            if (noiDung.includes("bo the thao 3 soc")) {
+                id = "bo-3-soc";
+
+            } else if (noiDung.includes("bo adidas den soc trang")) {
+                id = "adidas-den";
+
+            } else if (noiDung.includes("mu adidas")) {
+                id = "mu-adidas";
+
+            } else if (noiDung.includes("dep adidas")) {
+                id = "dep-adidas";
+            }
+        }
+
+        if (id) sp.dataset.productId = id;
+
+        function moTrangRieng(event) {
+
+            // Khong chuyen trang khi bam nut, link hoac dieu khien ben trong
+
+            if (event.target.closest("button, a, select, input, textarea, .anh-phu")) {
+                return;
+            }
 
             if (!id) {
-                alert(
-                    "Sản phẩm chưa có mã data-product-id trong HTML."
-                );
-
+                alert("Chua xac dinh duoc ma san pham. Hay kiem tra ten san pham trong HTML.");
                 return;
             }
 
             window.location.href =
-                "./san-pham.html?id=" +
-                encodeURIComponent(id);
+                "./san-pham.html?id=" + encodeURIComponent(id);
         }
 
-        if (anh) {
-            anh.style.cursor = "pointer";
-            anh.addEventListener("click", moTrangRieng);
-        }
+        sp.style.cursor = "pointer";
 
-        if (ten) {
-            ten.style.cursor = "pointer";
-            ten.addEventListener("click", moTrangRieng);
-        }
+        sp.addEventListener("click", moTrangRieng);
+
+        if (anh) anh.style.cursor = "pointer";
+        if (ten) ten.style.cursor = "pointer";
     });
 
-    // Xu ly nut tien hanh thanh toan
-    const nutThanhToan = document.querySelector(
-        ".nut-tien-hanh-thanh-toan"
-    );
+    // Nut tien hanh thanh toan
 
-    if (nutThanhToan) {
-
+    document.querySelectorAll(".nut-tien-hanh-thanh-toan").forEach(function (nutThanhToan) {
         nutThanhToan.addEventListener("click", function (event) {
-
             event.preventDefault();
-
             hienThiDatHang();
         });
+    });
+
+    // Nut dong form dat hang
+
+    const nutDong = layPhanTu("dongFormDatHang", "nutDongFormDatHang");
+
+    if (nutDong) {
+        nutDong.addEventListener("click", dongFormDatHang);
     }
 
-    // Hien thi QR khi chon phuong thuc
-    const hinhThuc = layPhanTu(
-        "thanhToan",
-        "phuongThucThanhToan"
-    );
+    // Cap nhat phuong thuc thanh toan
 
-    if (hinhThuc) {
+    document.querySelectorAll('input[name="thanhToan"]').forEach(function (radio) {
+        radio.addEventListener("change", capNhatPhuongThucThanhToan);
+    });
 
-        hinhThuc.addEventListener(
-            "change",
-            hienThiThanhToan
-        );
+    capNhatPhuongThucThanhToan();
 
-        hienThiThanhToan();
-    }
+    // Khoi tao trang chi tiet san pham
 
-    // Khoi tao trang chi tiet
     khoiTaoTrangChiTiet();
 
 });
