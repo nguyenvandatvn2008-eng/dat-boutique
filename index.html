@@ -7,6 +7,11 @@
     <meta name="description" content="DAT BOUTIQUE - Thời trang thể thao và phụ kiện phong cách.">
     <title>DAT BOUTIQUE | Premium Sportswear</title>
     <link rel="stylesheet" href="./style.css">
+    <style>
+        [hidden] {
+            display: none !important;
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="./script.js" defer></script>
 </head>
@@ -60,9 +65,13 @@
                     <div class="thong-tin-san-pham">
                         <p class="loai-san-pham">SPORTWEAR · COLLECTION</p>
                         <h3>Bộ thể thao 3 sọc</h3>
-                        <div class="gia-san-pham"><del>350.000đ</del><strong>245.000đ</strong><span class="nhan-giam-gia">-30%</span></div>
+                        <div class="gia-san-pham">
+                            <del>350.000đ</del>
+                            <strong>245.000đ</strong>
+                            <span class="nhan-giam-gia">-30%</span>
+                        </div>
                         <button type="button" class="nut-them-nhanh" data-add-product="bo-3-soc">THÊM VÀO GIỎ HÀNG</button>
-                        <a class="xem-chi-tiet" href="./san-pham.html?id=bo-3-soc">XEM CHI TIẾT</a>
+                        <a class="xem-chi-tiet" href="./san-pham.html.html?id=bo-3-soc">XEM CHI TIẾT</a>
                     </div>
                 </article>
 
@@ -74,9 +83,13 @@
                     <div class="thong-tin-san-pham">
                         <p class="loai-san-pham">SPORTWEAR · COLLECTION</p>
                         <h3>Bộ Adidas đen sọc trắng</h3>
-                        <div class="gia-san-pham"><del>700.000đ</del><strong>490.000đ</strong><span class="nhan-giam-gia">-30%</span></div>
+                        <div class="gia-san-pham">
+                            <del>700.000đ</del>
+                            <strong>490.000đ</strong>
+                            <span class="nhan-giam-gia">-30%</span>
+                        </div>
                         <button type="button" class="nut-them-nhanh" data-add-product="adidas-den">THÊM VÀO GIỎ HÀNG</button>
-                        <a class="xem-chi-tiet" href="./san-pham.html?id=adidas-den">XEM CHI TIẾT</a>
+                        <a class="xem-chi-tiet" href="./san-pham.html.html?id=adidas-den">XEM CHI TIẾT</a>
                     </div>
                 </article>
 
@@ -88,9 +101,13 @@
                     <div class="thong-tin-san-pham">
                         <p class="loai-san-pham">SPORTWEAR · ACCESSORIES</p>
                         <h3>Mũ Adidas</h3>
-                        <div class="gia-san-pham"><del>500.000đ</del><strong>350.000đ</strong><span class="nhan-giam-gia">-30%</span></div>
+                        <div class="gia-san-pham">
+                            <del>500.000đ</del>
+                            <strong>350.000đ</strong>
+                            <span class="nhan-giam-gia">-30%</span>
+                        </div>
                         <button type="button" class="nut-them-nhanh" data-add-product="mu-adidas">THÊM VÀO GIỎ HÀNG</button>
-                        <a class="xem-chi-tiet" href="./san-pham.html?id=mu-adidas">XEM CHI TIẾT</a>
+                        <a class="xem-chi-tiet" href="./san-pham.html.html?id=mu-adidas">XEM CHI TIẾT</a>
                     </div>
                 </article>
 
@@ -102,12 +119,17 @@
                     <div class="thong-tin-san-pham">
                         <p class="loai-san-pham">SPORTWEAR · ACCESSORIES</p>
                         <h3>Dép Adidas</h3>
-                        <div class="gia-san-pham"><del>700.000đ</del><strong>490.000đ</strong><span class="nhan-giam-gia">-30%</span></div>
+                        <div class="gia-san-pham">
+                            <del>700.000đ</del>
+                            <strong>490.000đ</strong>
+                            <span class="nhan-giam-gia">-30%</span>
+                        </div>
                         <button type="button" class="nut-them-nhanh" data-add-product="dep-adidas">THÊM VÀO GIỎ HÀNG</button>
-                        <a class="xem-chi-tiet" href="./san-pham.html?id=dep-adidas">XEM CHI TIẾT</a>
+                        <a class="xem-chi-tiet" href="./san-pham.html.html?id=dep-adidas">XEM CHI TIẾT</a>
                     </div>
                 </article>
             </div>
+
             <p id="khongTimThay" class="empty-search" hidden>Không tìm thấy sản phẩm phù hợp.</p>
         </section>
 
@@ -117,13 +139,21 @@
                 <h2>GIỎ HÀNG CỦA BẠN</h2>
                 <span></span>
             </div>
+
             <div class="khung-gio-hang">
                 <div id="danhSachGio">
                     <p class="gio-hang-trong">Giỏ hàng của bạn đang trống. Hãy khám phá sản phẩm nhé!</p>
                 </div>
+
                 <aside class="tong-ket" id="khungTongKet" hidden>
-                    <p><span>Số lượng sản phẩm</span><strong id="soluong">0</strong></p>
-                    <p class="tong-tien-dong"><span>Tổng thanh toán</span><strong id="tongTien">0đ</strong></p>
+                    <p>
+                        <span>Số lượng sản phẩm</span>
+                        <strong id="soluong">0</strong>
+                    </p>
+                    <p class="tong-tien-dong">
+                        <span>Tổng thanh toán</span>
+                        <strong id="tongTien">0đ</strong>
+                    </p>
                     <button type="button" id="nutTienHanhThanhToan" class="order-button">TIẾN HÀNH THANH TOÁN</button>
                 </aside>
             </div>
@@ -135,6 +165,7 @@
                 <h2>THÔNG TIN ĐẶT HÀNG</h2>
                 <span></span>
             </div>
+
             <form class="khung-dat-hang" id="formDatHang">
                 <label for="hoTen">Họ và tên</label>
                 <input type="text" id="hoTen" name="hoTen" placeholder="Nhập họ và tên" autocomplete="name" required>
@@ -146,10 +177,12 @@
                 <textarea id="diaChi" name="diaChi" rows="3" placeholder="Số nhà, đường, phường/xã, tỉnh/thành" autocomplete="street-address" required></textarea>
 
                 <p class="tieu-de-thanh-toan">Phương thức thanh toán</p>
+
                 <label class="lua-chon-thanh-toan">
                     <input type="radio" name="thanhToan" value="QR" required>
                     Chuyển khoản Vietcombank bằng mã QR
                 </label>
+
                 <label class="lua-chon-thanh-toan">
                     <input type="radio" name="thanhToan" value="COD" required>
                     Thanh toán khi nhận hàng (COD)
@@ -164,6 +197,7 @@
                     <button type="button" id="nutDongThanhToan" class="nut-phu">QUAY LẠI GIỎ HÀNG</button>
                     <button type="submit" class="order-button" id="nutXacNhanDon">XÁC NHẬN ĐẶT HÀNG</button>
                 </div>
+
                 <div id="ketQuaThanhToan" aria-live="polite"></div>
             </form>
         </section>
